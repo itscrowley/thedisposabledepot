@@ -58,25 +58,28 @@ header {
   justify-content: center; 
   align-items: center;
   padding: 8px 12px; 
-  border-radius: 50px; /* Pill Shape */
+  border-radius: 50px;
   
-  /* --- FIX YAHAN HAI --- */
-  /* Pehle ye bahut transparent tha, ab isse 'Milky White' kar diya hai */
-  background: rgba(255, 255, 255, 0.75); 
+  /* --- PERFECT FROSTED GLASS --- */
   
-  /* Blur Effect */
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  /* 1. Background wapas TRANSPARENT (Sirf 20% safed) */
+  background: rgba(255, 255, 255, 0.2);
   
-  /* Border aur Shadow */
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  /* 2. Blur + Saturate (Ye combination hi "Frosted Glass" banata hai) */
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  
+  /* 3. Shiny Border (Taaki glass ke kinare chamkein) */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  
+  /* Shadow */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   transition: all 0.4s ease;
 }
 
-/* Dark Mode ke liye alag rang (Dark Grey Pill) */
+/* Dark Mode Frosted Glass */
 body.dark-mode header {
-  background: rgba(30, 41, 59, 0.85);
+  background: rgba(15, 23, 42, 0.4); /* Transparent Dark */
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
