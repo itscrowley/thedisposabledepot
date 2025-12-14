@@ -96,7 +96,7 @@ header.scrolled { top: 10px; }
   position: relative;
   
   /* --- PARALLAX IMAGE SETTINGS --- */
-  background-image: url("https://images.unsplash.com/photo-1645047059915-ae0b25f3bb60?q=80&w=1332&auto=format&fit=crop");
+  background-image: url("https://plus.unsplash.com/premium_photo-1747817558737-ae95a255b6c9?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   background-attachment: fixed; /* FIXED = PARALLAX */
   background-position: center;
   background-repeat: no-repeat;
