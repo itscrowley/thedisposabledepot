@@ -69,15 +69,29 @@ header.scrolled { top: 10px; }
   background-attachment: fixed; background-position: center;
   background-repeat: no-repeat; background-size: cover; position: relative;
 }
-.hero {
-  min-height: auto;
+/* --- NAYA CODE: Background Image aur Blur yahan hai --- */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0; /* Poore area ko cover karega */
   background-image: url("https://images.unsplash.com/photo-1645047059915-ae0b25f3bb60?q=80&w=1332&auto=format&fit=crop");
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding-top: 150px; padding-bottom: 0px;
+  background-attachment: fixed; /* Parallax effect ke liye */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  /* >>> BLUR EFFECT YAHAN HAI <<< */
+  filter: blur(8px); /* 8px ko kam ya zyada karke blur adjust karein */
+  /* Thoda zoom karte hain taaki blur ke white edges na dikhein */
+  transform: scale(1.1); 
+  z-index: -2; /* Sabse peeche bhejne ke liye */
 }
+
+/* Gradient overlay (jo pehle se tha) ko update kiya */
 .hero::after {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(to bottom, rgba(0,0,0,0.05), var(--bg-body));
+  z-index: -1; /* Blurry image ke upar, lekin text ke neeche */
 }
 .hero-content {
   position: relative; z-index: 2; text-align: center;
