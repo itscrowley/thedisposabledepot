@@ -115,8 +115,8 @@ header.scrolled { top: 10px; }
   animation: fadeInUp 1s ease-out;
   
   /* --- GLASS EFFECT --- */
-  background: rgba(255, 255, 255, 0.2); /* Transparent White */
-  backdrop-filter: blur(30px) saturate(180%); /* Strong Blur */
+  background: rgba(255, 255, 255, 0.5); /* Transparent White */
+  backdrop-filter: blur(90px) saturate(180%); /* Strong Blur */
   -webkit-backdrop-filter: blur(30px) saturate(180%);
   
   border: 1px solid rgba(255, 255, 255, 0.4); /* Shiny Border */
