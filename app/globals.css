@@ -47,17 +47,38 @@ button { cursor: pointer; border: none; outline: none; }
 
 /* HEADER */
 header {
-  position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-  width: 90%; max-width: 500px; z-index: 1000;
-  display: flex; justify-content: center; align-items: center;
-  padding: 8px 12px; border-radius: 50px;
+  position: fixed; 
+  top: 20px; 
+  left: 50%; 
+  transform: translateX(-50%);
+  width: 90%; 
+  max-width: 500px; 
+  z-index: 1000;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  padding: 8px 12px; 
+  border-radius: 50px; /* Ye isko "pill" shape deta hai */
+  
+  /* Glass Effect Background Color (Halka sa transparent) */
   background: var(--glass-bg-header);
-  backdrop-filter: saturate(200%) blur(50px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  
+  /* --- Stronger Blur Effect Yahan Hai --- */
+  /* Pehle 20px tha, ab 40px kar diya hai taaki zyada blur dikhe */
+  backdrop-filter: saturate(200%) blur(40px);
+  -webkit-backdrop-filter: saturate(200%) blur(40px); /* Safari ke liye */
+  
+  /* Border aur Shadow taaki wo background se alag dikhe */
   border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 10px 30px var(--shadow-color);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   transition: all 0.4s ease;
 }
+
+/* Jab scroll karte hain to thoda upar khisak jata hai */
+header.scrolled { top: 10px; }
+
+.brand { display: flex; justify-content: center; align-items: center; width: 100%; }
+.logo-img { height: 60px; width: auto; max-width: 100%; object-fit: cover; display: block; border-radius: 50px; }
 header.scrolled { top: 10px; }
 .brand { display: flex; justify-content: center; align-items: center; width: 100%; }
 .logo-img { height: 60px; width: auto; max-width: 100%; object-fit: cover; display: block; border-radius: 50px; }
