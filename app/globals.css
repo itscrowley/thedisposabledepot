@@ -51,7 +51,7 @@ header {
   /* --- GLASS EFFECT --- */
   background: rgba(255, 255, 255, 0.3); /* Thoda safed taaki visible ho */
   backdrop-filter: blur(90px) saturate(180%);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(90px) saturate(180%);
   
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -115,9 +115,9 @@ header.scrolled { top: 10px; }
   animation: fadeInUp 1s ease-out;
   
   /* --- GLASS EFFECT --- */
-  background: rgba(255, 255, 255, 0.5); /* Transparent White */
+  background: rgba(255, 255, 255, 0.4); /* Transparent White */
   backdrop-filter: blur(90px) saturate(180%); /* Strong Blur */
-  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(90px) saturate(180%);
   
   border: 1px solid rgba(255, 255, 255, 0.4); /* Shiny Border */
   box-shadow: 0 20px 60px rgba(0,0,0,0.1);
