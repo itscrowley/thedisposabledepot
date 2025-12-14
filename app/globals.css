@@ -58,27 +58,28 @@ header {
   justify-content: center; 
   align-items: center;
   padding: 8px 12px; 
-  border-radius: 50px; /* Ye isko "pill" shape deta hai */
+  border-radius: 50px; /* Pill Shape */
   
-  /* Glass Effect Background Color (Halka sa transparent) */
-  background: var(--glass-bg-header);
+  /* --- FIX YAHAN HAI --- */
+  /* Pehle ye bahut transparent tha, ab isse 'Milky White' kar diya hai */
+  background: rgba(255, 255, 255, 0.75); 
   
-  /* --- Stronger Blur Effect Yahan Hai --- */
-  /* Pehle 20px tha, ab 40px kar diya hai taaki zyada blur dikhe */
-  backdrop-filter: saturate(200%) blur(40px);
-  -webkit-backdrop-filter: saturate(200%) blur(40px); /* Safari ke liye */
+  /* Blur Effect */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   
-  /* Border aur Shadow taaki wo background se alag dikhe */
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  /* Border aur Shadow */
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   transition: all 0.4s ease;
 }
 
-/* Jab scroll karte hain to thoda upar khisak jata hai */
-header.scrolled { top: 10px; }
+/* Dark Mode ke liye alag rang (Dark Grey Pill) */
+body.dark-mode header {
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-.brand { display: flex; justify-content: center; align-items: center; width: 100%; }
-.logo-img { height: 60px; width: auto; max-width: 100%; object-fit: cover; display: block; border-radius: 50px; }
 header.scrolled { top: 10px; }
 .brand { display: flex; justify-content: center; align-items: center; width: 100%; }
 .logo-img { height: 60px; width: auto; max-width: 100%; object-fit: cover; display: block; border-radius: 50px; }
