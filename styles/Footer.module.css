@@ -1,15 +1,6 @@
 /* styles/Footer.module.css */
 
-/* --- DEFAULT: DARK MODE (Raat wala look) --- */
-.footer {
-    background-color: #1a1a1a; /* Dark Grey Bg */
-    padding: 70px 0 0;
-    color: #ffffff; /* White Text */
-    font-family: sans-serif;
-    line-height: 1.5;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
+/* --- 1. BASE STYLES & LAYOUT (Common for both) --- */
 .container {
     max-width: 1170px;
     margin: auto;
@@ -30,7 +21,7 @@
 
 .footerLogo {
     font-size: 24px;
-    color: #ff6600; /* Orange Logo (Same in both modes) */
+    color: #ff6600; /* Orange Logo (Always same) */
     margin-bottom: 20px;
     font-weight: 700;
     text-transform: uppercase;
@@ -39,7 +30,6 @@
 
 .footerCol h3 {
     font-size: 18px;
-    color: #ffffff; /* Headings White in Dark Mode */
     text-transform: capitalize;
     margin-bottom: 35px;
     font-weight: 500;
@@ -57,7 +47,6 @@
 }
 
 .text {
-    color: #bbbbbb; /* Halka Grey Text */
     font-size: 15px;
     margin-bottom: 20px;
 }
@@ -74,7 +63,6 @@
 .link {
     font-size: 16px;
     text-transform: capitalize;
-    color: #bbbbbb;
     text-decoration: none;
     font-weight: 300;
     display: block;
@@ -82,7 +70,7 @@
 }
 
 .link:hover {
-    color: #ff6600;
+    color: #ff6600 !important; /* Force Orange hover */
     padding-left: 8px;
 }
 
@@ -90,7 +78,6 @@
     display: flex;
     align-items: center;
     margin-bottom: 15px;
-    color: #bbbbbb;
 }
 
 .icon {
@@ -112,65 +99,79 @@
     align-items: center;
     height: 40px;
     width: 40px;
-    background-color: rgba(255, 255, 255, 0.1); /* White transparent circle */
     border-radius: 50%;
-    color: #ffffff;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .socialIcon:hover {
-    color: #1a1a1a;
-    background-color: #ff6600;
+    background-color: #ff6600 !important;
+    color: #fff !important;
 }
 
 .footerBottom {
-    background-color: #111111; /* Darker bottom bar */
     padding: 15px;
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
-    color: #888;
 }
 
-/* --- LIGHT MODE ADJUSTMENTS (Din wala look) --- */
-/* Ye code tab chalega jab user ka system 'Light Mode' me hoga */
-@media (prefers-color-scheme: light) {
+/* --- 2. LIGHT MODE (DEFAULT) - Ye Ab Pehle Chalega --- */
+.footer {
+    background-color: #f8f9fa; /* Light Grey Background */
+    color: #333333; /* Dark Text */
+    padding: 70px 0 0;
+    font-family: sans-serif;
+    line-height: 1.5;
+}
+
+.footerCol h3 {
+    color: #222222; /* Black Heading */
+}
+
+.text, .link, .contactInfo li {
+    color: #555555; /* Dark Grey Content */
+}
+
+.socialIcon {
+    background-color: #e0e0e0; /* Grey Circle */
+    color: #333333;
+}
+
+.footerBottom {
+    background-color: #e9ecef; /* Footer Bottom Light */
+    color: #666;
+}
+
+
+/* --- 3. DARK MODE (OVERRIDE) - Sirf tab jab Dark Mode ON ho --- */
+@media (prefers-color-scheme: dark) {
     .footer {
-        background-color: #f4f4f4; /* Light Grey Bg */
-        color: #333333; /* Dark Text */
+        background-color: #1a1a1a; /* Dark Grey Bg */
+        color: #ffffff;
     }
 
     .footerCol h3 {
-        color: #222222; /* Black Headings */
+        color: #ffffff;
     }
 
     .text, .link, .contactInfo li {
-        color: #555555; /* Dark Grey Content Text */
-    }
-    
-    .link:hover {
-        color: #ff6600; /* Hover still Orange */
+        color: #bbbbbb; /* Light Grey Content */
     }
 
-    /* Social Icons adjustment for Light Mode */
     .socialIcon {
-        background-color: rgba(0, 0, 0, 0.1); /* Black transparent circle */
-        color: #333333;
-    }
-    
-    .socialIcon:hover {
-        background-color: #ff6600;
-        color: #fff;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
     }
 
     .footerBottom {
-        background-color: #e0e0e0; /* Slightly darker grey for bottom */
-        color: #666;
+        background-color: #111111;
+        color: #888;
     }
 }
 
-/* --- MOBILE RESPONSIVE --- */
+
+/* --- MOBILE FIX --- */
 @media (max-width: 768px) {
     .footerCol {
         width: 100%;
