@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 
 export const metadata = {
   title: 'The Disposable Depot',
-  description: 'Best disposable products in Jalandhar',
+  description: 'Order Paper Cups, Plates, Bags & more at wholesale rates.',
 };
 
 export default function RootLayout({ children }) {
