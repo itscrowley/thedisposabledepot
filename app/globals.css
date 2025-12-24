@@ -39,63 +39,57 @@ body {
 a { text-decoration: none; transition: 0.3s ease; }
 button { cursor: pointer; border: none; outline: none; }
 
-/* --- BODY (Blur Test Karne Ke Liye) --- */
-/* Body mein koi image ya gradient hona zaroori hai tabhi glass effect dikhega */
-body {
-    background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
-    min-height: 100vh;
-    margin: 0;
-}
-
-/* --- HEADER GLASS EFFECT --- */
 header {
-    /* 1. Positioning Zaroori Hai */
-    position: fixed; /* Ya 'sticky' use karein */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* Content ke upar rehne ke liye */
+  /* --- POSITIONING (Center mein float karne ke liye) --- */
+  position: fixed;
+  top: 20px; /* Top se thoda neeche taaki "floating" lage */
+  left: 50%;
+  transform: translateX(-50%); /* Exact center karne ka formula */
+  z-index: 1000;
 
-    /* 2. Glass Properties */
-    background: rgba(255, 255, 255, 0.25); /* Transparency zaroori hai */
-    
-    /* Heavy Blur */
-    backdrop-filter: blur(15px) saturate(180%);
-    -webkit-backdrop-filter: blur(15px) saturate(180%); /* Safari Support */
-    
-    /* Border & Shadow */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    
-    /* Animation */
-    transition: all 0.4s ease;
+  /* --- SIZE (Pill banane ke liye) --- */
+  width: 90%; /* Mobile par almost full width */
+  max-width: 1200px; /* Desktop par zyada lamba na ho */
+  padding: 10px 30px; /* Content ke andar space */
+  border-radius: 50px; /* Ye hai wo magic property jo PILL banayegi */
+
+  /* --- GLASS EFFECT --- */
+  background: rgba(255, 255, 255, 0.25); /* Transparency */
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  
+  /* --- BORDER & SHADOW --- */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transition: all 0.4s ease;
 }
 
-/* --- DARK MODE --- */
+/* --- DARK MODE SUPPORT --- */
 body.dark-mode header {
-    background: rgba(15, 23, 42, 0.6);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.7); /* Thoda dark background */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-/* --- OTHER STYLES --- */
-header.scrolled { 
-    top: 10px; 
-    /* Scrolled hone par thoda zyada blur ya dark kar sakte hain */
-    backdrop-filter: blur(20px) saturate(200%);
+/* --- SCROLL EFFECT (Optional) --- */
+/* Jab scroll karein to pill thoda upar chipak jaye ya size change ho */
+header.scrolled {
+  top: 10px;
+  width: 95%; /* Scroll par thoda wide ho sakta hai */
+  backdrop-filter: blur(20px) saturate(200%);
 }
 
-.brand { 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    width: 100%; 
-    height: 80px; /* Header ko height dena na bhoolein */
+.brand {
+  display: flex;
+  justify-content: space-between; /* Logo aur Menu ko door karne ke liye */
+  align-items: center;
+  width: 100%;
 }
 
-.logo-img { 
-    height: 60px; 
-    width: auto; 
-    border-radius: 50px; 
+.logo-img {
+  height: 50px; /* Pill ke hisaab se height adjust karein */
+  width: auto;
+  border-radius: 50%; /* Logo bhi round achha lagega */
 }
 
 /* ================= HERO SECTION (FIXED PARALLAX + GLASS BOXES) ================= */
