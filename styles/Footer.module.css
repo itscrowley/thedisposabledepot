@@ -1,45 +1,35 @@
 /* styles/Footer.module.css */
 
-/* --- 1. COMMON SETTINGS --- */
+/* --- 1. LAYOUT SETTINGS --- */
 .container {
     max-width: 1170px;
     margin: auto;
     padding: 0 15px;
 }
-
 .row {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-
 .footerCol {
     width: 30%;
     padding: 0 15px;
     margin-bottom: 30px;
 }
-
-/* Logo - Orange Hamesha */
 .footerLogo {
     font-size: 24px;
     color: #ff6600 !important;
     margin-bottom: 20px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 0 2px 10px rgba(255, 102, 0, 0.2);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-
-/* Headings */
 .footerCol h3 {
     font-size: 18px;
     margin-bottom: 35px;
     font-weight: 600;
     position: relative;
-    text-transform: capitalize;
 }
-
-/* Orange Line under Heading */
 .footerCol h3::before {
     content: '';
     position: absolute;
@@ -48,114 +38,88 @@
     background-color: #ff6600;
     height: 3px;
     width: 50px;
-    border-radius: 2px;
 }
-
-/* Links & Text List */
 .footerCol ul { list-style: none; padding: 0; }
 .footerCol ul li { margin-bottom: 12px; }
-
 .link {
     font-size: 16px;
     text-decoration: none;
     transition: 0.3s;
     display: block;
-    font-weight: 400;
 }
-
 .link:hover {
     color: #ff6600 !important;
     padding-left: 8px;
-    text-shadow: 0 0 10px rgba(255, 102, 0, 0.4);
 }
-
 .contactInfo li { display: flex; align-items: center; margin-bottom: 15px; }
 .icon { font-size: 18px; color: #ff6600; margin-right: 15px; width: 25px; text-align: center; }
-
-/* Social Icons */
 .socialLinks { display: flex; gap: 12px; }
 .socialIcon {
     display: flex; justify-content: center; align-items: center;
     height: 40px; width: 40px; border-radius: 50%;
     text-decoration: none; transition: 0.3s;
-    backdrop-filter: blur(5px);
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
-
 .socialIcon:hover {
     background-color: #ff6600 !important;
     color: #fff !important;
     transform: translateY(-3px);
 }
-
 .footerBottom {
     padding: 20px;
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(0,0,0,0.1);
 }
 
-
 /* =========================================
-   2. LIGHT MODE (Gradient Orange Magic)
+   2. LIGHT MODE (STRONG ORANGE GRADIENT)
    ========================================= */
+/* Ye code Default hai (Light mode ke liye) */
 .footer {
-    /* ✨ Magic Gradient Here ✨ */
-    /* White se start hokar Halka Orange (Peach) ki taraf jayega */
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 235, 220, 0.9) 100%) !important;
+    /* Strong Gradient: White se Orange ki taraf */
+    background: linear-gradient(180deg, #ffffff 0%, #ffe0b2 100%) !important;
     
-    /* Glass Blur */
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    
-    /* Border Styling */
-    border-top: 1px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0 -10px 30px rgba(255, 165, 0, 0.15); /* Halka Orange Shadow */
-    
+    /* Text Color Dark */
     color: #333333 !important;
+    
     padding: 70px 0 0;
     font-family: sans-serif;
     line-height: 1.5;
 }
 
-/* Light Mode Text Colors */
 .footerCol h3 { color: #222 !important; }
-.text, .link, .contactInfo li { color: #444 !important; font-weight: 500; } /* Thoda dark kiya text taaki gradient pe dikhe */
-
+.text, .link, .contactInfo li { color: #444 !important; }
 .socialIcon { 
-    background-color: rgba(255, 255, 255, 0.6) !important; 
-    color: #d35400 !important; /* Dark Orange Icon color */
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    background-color: #fff !important; 
+    color: #ff6600 !important;
 }
-.footerBottom { color: #666 !important; background: rgba(255, 255, 255, 0.3); }
+.footerBottom { background-color: rgba(255, 165, 0, 0.1) !important; color: #666 !important; }
 
 
 /* =========================================
-   3. DARK MODE (Black Glass)
+   3. DARK MODE (Only overrides if System is Dark)
    ========================================= */
 @media (prefers-color-scheme: dark) {
     .footer {
-        background: rgba(20, 20, 20, 0.85) !important; /* Dark Glass */
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+        background: #1a1a1a !important; /* Pure Dark Grey */
+        background-image: none !important; /* Gradient hatao */
         color: #ffffff !important;
     }
 
     .footerCol h3 { color: #ffffff !important; }
-    .text, .link, .contactInfo li { color: #cccccc !important; font-weight: 400; }
+    .text, .link, .contactInfo li { color: #bbbbbb !important; }
     
     .socialIcon { 
         background-color: rgba(255, 255, 255, 0.1) !important; 
         color: #fff !important; 
-        border: 1px solid rgba(255,255,255,0.1);
     }
     
-    .footerBottom { color: #999 !important; background: transparent; border-color: rgba(255,255,255,0.1) !important; }
+    .footerBottom { background-color: #111111 !important; color: #888 !important; }
 }
 
-
-/* --- Mobile Responsive --- */
+/* Mobile Fix */
 @media (max-width: 768px) {
     .footerCol { width: 100%; text-align: center; }
     .footerCol h3::before { left: 50%; transform: translateX(-50%); }
