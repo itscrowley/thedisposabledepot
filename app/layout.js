@@ -1,21 +1,28 @@
-import { Poppins } from "next/font/google";
-import "./globals.css";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "600", "800"],
-  variable: "--font-poppins",
-});
+import './globals.css';
+// Footer import kar rahe hain (path dhyan se dekhein)
+import Footer from '../components/Footer'; 
 
 export const metadata = {
-  title: "The Disposable Depot – Premium Catalogue",
-  description: "Best Wholesale Prices in Jalandhar for Packaged Water & Disposables",
+  title: 'The Disposable Depot',
+  description: 'Best disposable products in Jalandhar',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={poppins.className}>{children}</body>
+      <head>
+        {/* Icons ke liye FontAwesome Link */}
+        <link 
+          rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+        />
+      </head>
+      <body>
+        {children}
+        
+        {/* Footer yahan lagaya */}
+        <Footer />
+      </body>
     </html>
   );
 }
