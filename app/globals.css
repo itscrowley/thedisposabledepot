@@ -281,61 +281,59 @@ body.dark-mode .marquee-track span { color: #fff; text-shadow: 0 1px 3px rgba(0,
 .card-tag { font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--secondary); background: rgba(22, 163, 74, 0.1); padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 8px; }
 .card.highlight { border: 2px solid var(--secondary); }
 
-/* --- WHY US WRAPPER --- */
+/* --- 1. MAIN WRAPPER (Parent) --- */
 .why-us-wrapper {
   position: relative;
   width: 100%;
-  padding: 0; /* Padding child elements sambhal lenge */
   margin-bottom: 60px;
-  
-  /* 1. Stacking Context Create karein */
-  z-index: 1; 
-  /* 2. Blur edges ko katne ke liye */
-  overflow: hidden; 
-  
   border-top: 1px solid rgba(0,0,0,0.1); 
   border-bottom: 1px solid rgba(0,0,0,0.1);
+  
+  /* Z-Index 1 set karna zaroori hai taaki iska ::before body ke peeche na chupa jaye */
+  z-index: 1; 
+  /* Blurred edges ko chupane ke liye */
+  overflow: hidden; 
 }
 
-/* --- PARALLAX BACKGROUND LAYER --- */
+/* --- 2. BACKGROUND IMAGE LAYER (Parallax + Blur) --- */
+/* Ye content ka parent nahi, balki sibling ban kar peeche rahega */
 .why-us-wrapper::before {
   content: "";
   position: absolute;
+  /* Image ko thoda bada rakha hai taaki blur ke edges na dikhein */
+  top: -10px; left: -10px; right: -10px; bottom: -10px;
   
-  /* 3. Negative Positioning (Transform ki jagah) */
-  /* Image ko container se thoda bada karte hain taaki blur edges na dikhein */
-  top: -20px;
-  left: -20px;
-  right: -20px;
-  bottom: -20px;
-
-  /* 4. Image Setup */
   background-image: url("https://plus.unsplash.com/premium_photo-1681426736883-49a5787eee8e?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   
-  /* 5. PARALLAX MAGIC PROPERTY */
+  /* Parallax Effect */
   background-attachment: fixed; 
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 
-  /* 6. Blur Effect */
-  filter: blur(8px);
+  /* Sirf ye layer blur hogi */
+  filter: blur(8px); 
   
-  /* 7. Layering: Content ke peeche bhejein */
+  /* Content ke peeche bhejne ke liye */
   z-index: -1; 
 }
 
-/* --- GLASS OVERLAY --- */
+/* --- 3. GLASS CONTAINER (Content Holder) --- */
 .why-us-glass {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  padding: 60px 0; /* Padding yahan di hai */
+  /* Isko relative dena zaroori hai taaki ye ::before ke upar aaye */
+  position: relative; 
+  z-index: 2; /* Content sabse upar rahega */
   
-  /* Background thoda saaf rakhein taaki peeche ki image dikhe */
-  background: rgba(255, 255, 255, 0.5); 
-  backdrop-filter: blur(5px); /* Double blur for smoothness */
-  z-index: 2;
+  width: 100%; 
+  height: 100%;
+  padding: 50px 0;
+  
+  /* Halka safed rang taaki text padha jaye */
+  background: rgba(255, 255, 255, 0.6);
+  
+  /* Optional: Agar aap chahein to yahan bhi thoda frost effect rakh sakte hain, 
+     par content blur nahi hoga kyunki ye backdrop-filter hai */
+  backdrop-filter: blur(5px); 
 }
 
 /* --- DARK MODE --- */
@@ -343,6 +341,30 @@ body.dark-mode .why-us-glass {
   background: rgba(15, 23, 42, 0.85); 
 }
 
+/* --- 4. CARDS & CONTENT (NO CHANGES - As requested) --- */
+/* Aapka purana code same rahega, bas ensure karein z-index theek ho */
+.swipe-container {
+  position: relative; /* Safety ke liye */
+  z-index: 3; /* Sabse top par */
+  display: flex; justify-content: center; gap: 20px;
+  padding: 0 20px; max-width: 1200px; margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.swipe-card {
+  background: var(--card-bg); 
+  border: 1px solid var(--glass-border-strong);
+  padding: 25px; border-radius: 20px; min-width: 220px; flex: 1;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  box-shadow: 0 5px 15px var(--shadow-color); transition: all 0.3s;
+  position: relative; overflow: hidden;
+}
+
+/* ...Baki saara card CSS waisa hi rakhein... */
+.swipe-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 15px 30px rgba(249, 115, 22, 0.2); }
+.swipe-icon { font-size: 40px; margin-bottom: 15px; }
+.swipe-text h4 { font-size: 18px; margin: 0 0 5px; color: var(--primary); font-weight: 800; }
+.swipe-text p { font-size: 13px; margin: 0; color: var(--text-muted); }
 /* MID BANNER & BULK BUTTON */
 .mid-banner {
   padding: 120px 20px;
