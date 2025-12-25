@@ -1,24 +1,17 @@
-/* 1. FONT IMPORT (Sabse Top Par) */
+/* 1. FONT IMPORT */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-/* 2. TAILWIND (Bina @source ke, taaki error na aaye) */
+/* 2. TAILWIND */
 @import "tailwindcss";
 
 /* 3. FORCE BOLD FONTS */
 @layer base {
-  html, body {
-    font-family: 'Poppins', sans-serif !important;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 800 !important;
-    color: inherit;
-  }
-  b, strong, button, .btn, .font-bold {
-    font-weight: 700 !important;
-  }
+  html, body { font-family: 'Poppins', sans-serif !important; }
+  h1, h2, h3, h4, h5, h6 { font-weight: 800 !important; color: inherit; }
+  b, strong, button, .btn, .font-bold { font-weight: 700 !important; }
 }
 
-/* 4. AAPKA ORIGINAL CODE (As it is) */
+/* 4. ORIGINAL STYLES */
 :root {
   --primary: #f97316;
   --primary-dark: #c2410c;
@@ -27,19 +20,14 @@
   --text-main: #1f2937;
   --text-muted: #4b5563;
   --card-bg: #ffffff;
-  
   --glass-bg-strong: rgba(255, 255, 255, 0.25);
   --glass-border-strong: 1px solid rgba(255, 255, 255, 0.3);
   --shadow-color: rgba(0,0,0,0.1);
 }
 
 body.dark-mode {
-  --bg-body: #0f172a;
-  --text-main: #f3f4f6;
-  --text-muted: #9ca3af;
-  --card-bg: #1e293b;
-  --glass-bg-strong: rgba(30, 41, 59, 0.4);
-  --glass-border-strong: 1px solid rgba(255, 255, 255, 0.1);
+  --bg-body: #0f172a; --text-main: #f3f4f6; --text-muted: #9ca3af; --card-bg: #1e293b;
+  --glass-bg-strong: rgba(30, 41, 59, 0.4); --glass-border-strong: 1px solid rgba(255, 255, 255, 0.1);
   --shadow-color: rgba(0,0,0,0.5);
 }
 
@@ -47,11 +35,8 @@ body.dark-mode {
 html { scroll-behavior: smooth; }
 
 body {
-  margin: 0;
-  font-family: 'Poppins', 'Helvetica Neue', sans-serif;
-  background-color: var(--bg-body);
-  color: var(--text-main);
-  overflow-x: hidden;
+  margin: 0; font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+  background-color: var(--bg-body); color: var(--text-main); overflow-x: hidden;
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
@@ -71,7 +56,7 @@ header.scrolled { top: 10px; padding: 10px 10px; backdrop-filter: blur(10px) sat
 .brand { display: flex; justify-content: center; align-items: center; width: 100%; }
 .logo-img { height: 60px; width: auto; max-width: 100%; object-fit: cover; display: block; border-radius: 50px; }
 
-/* HERO SECTION */
+/* HERO SECTION - MOBILE FIX APPLIED HERE */
 .parallax-wrapper { position: relative; width: 100%; overflow: hidden; }
 .hero {
   width: 100%; min-height: 85vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
@@ -79,6 +64,16 @@ header.scrolled { top: 10px; padding: 10px 10px; backdrop-filter: blur(10px) sat
   background-image: url("https://plus.unsplash.com/premium_photo-1747850753779-6d764d91935e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;
 }
+
+/* FIX: Mobile par Fixed Attachment hatana zaroori hai warna image cut jati hai */
+@media (max-width: 768px) {
+  .hero {
+    background-attachment: scroll !important;
+    background-position: center top !important;
+    background-size: cover !important;
+  }
+}
+
 .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.1), var(--bg-body)); z-index: 1; }
 
 .hero-content {
@@ -114,7 +109,7 @@ body.dark-mode .btn-hero-call { color: #fff; border-color: rgba(255,255,255,0.6)
 .btn-hero-call:hover { background: #fff; color: var(--primary); transform: scale(1.05); }
 @keyframes glowingWhite { 0% { box-shadow: 0 0 5px rgba(255,255,255,0.3); } 50% { box-shadow: 0 0 15px rgba(255,255,255,0.6), 0 0 5px var(--primary); } 100% { box-shadow: 0 0 5px rgba(255,255,255,0.3); } }
 
-/* UTILS */
+/* UTILS & CARDS */
 .theme-switch { position: relative; display: inline-block; width: 54px; height: 28px; flex-shrink: 0; }
 .theme-switch input { opacity: 0; width: 0; height: 0; }
 .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.1); transition: .4s; border-radius: 34px; border: 1px solid var(--text-main); display: flex; align-items: center; justify-content: space-between; padding: 0 5px; }
@@ -132,7 +127,6 @@ body.dark-mode .marquee-strip { background: linear-gradient(90deg, #c2410c 0%, #
 body.dark-mode .marquee-track span { color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
 @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-/* CARDS */
 .section { padding: 60px 20px 80px; max-width: 1200px; margin: auto; position: relative; z-index: 5; }
 .section-title { text-align: center; font-size: 36px; font-weight: 800; margin-bottom: 50px; color: var(--text-main); position: relative; }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
@@ -149,6 +143,8 @@ body.dark-mode .marquee-track span { color: #fff; text-shadow: 0 1px 3px rgba(0,
 
 .why-us-wrapper { position: relative; width: 100%; margin-bottom: 60px; border-top: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); z-index: 1; overflow: hidden; }
 .why-us-wrapper::before { content: ""; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; background-image: url("https://plus.unsplash.com/premium_photo-1681426736883-49a5787eee8e?q=80&w=1932&auto=format&fit=crop"); background-attachment: fixed; background-position: center; background-size: cover; background-repeat: no-repeat; filter: blur(1px); z-index: -1; }
+/* Mobile fix for Why Us parallax as well */
+@media (max-width: 768px) { .why-us-wrapper::before { background-attachment: scroll !important; } }
 .why-us-glass { position: relative; z-index: 2; width: 100%; height: 100%; padding: 50px 0; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(5px); }
 body.dark-mode .why-us-glass { background: rgba(15, 23, 42, 0.85); }
 .swipe-container { position: relative; z-index: 3; display: flex; justify-content: center; gap: 20px; padding: 0 20px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
@@ -159,6 +155,7 @@ body.dark-mode .why-us-glass { background: rgba(15, 23, 42, 0.85); }
 .swipe-text p { font-size: 13px; margin: 0; color: var(--text-muted); }
 
 .mid-banner { padding: 120px 20px; background-image: url("https://images.unsplash.com/photo-1648622981113-1e0f7e2c1b4e?q=80&w=2069&auto=format&fit=crop"); margin: 60px 0; text-align: center; color: white; position: relative; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; z-index: 1; }
+@media (max-width: 768px) { .mid-banner { background-attachment: scroll !important; } }
 .mid-banner::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: -1; }
 .mid-content { position: relative; z-index: 10; }
 .mid-content h2 { font-size: 36px; margin-bottom: 10px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
@@ -168,6 +165,7 @@ body.dark-mode .why-us-glass { background: rgba(15, 23, 42, 0.85); }
 @keyframes glowingGold { 0% { box-shadow: 0 0 5px rgba(255,255,255,0.3); } 50% { box-shadow: 0 0 15px rgba(255,255,255,0.6), 0 0 5px var(--primary); } 100% { box-shadow: 0 0 5px rgba(255,255,255,0.3); } }
 @keyframes fadeInUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
 
+/* LIGHTBOX */
 #lightbox { position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; padding: 10px; }
 #lightbox.active { opacity: 1; display: flex !important; }
 .lb-content { position: relative; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; max-width: 1200px; }
@@ -179,7 +177,9 @@ body.dark-mode .why-us-glass { background: rgba(15, 23, 42, 0.85); }
 #backTop { right: 20px; bottom: 30px; width: 50px; height: 50px; border-radius: 50%; background: var(--text-main); color: var(--bg-body); font-size: 20px; opacity: 0; pointer-events: none; transition: 0.3s; }
 #backTop.show { opacity: 1; pointer-events: all; }
 
-/* WHATSAPP CHAT */
+/* =========================================
+   WHATSAPP SECTION (FIXED COMPLETE DESIGN)
+   ========================================= */
 #order { padding: 60px 15px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 .wa-card { max-width: 500px; margin: 0 auto; background: #efeae2; background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png"); background-size: 400px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); overflow: hidden; border: 1px solid rgba(0,0,0,0.1); }
 body.dark-mode .wa-card { background-color: #0b141a; background-blend-mode: overlay; border: 1px solid rgba(255,255,255,0.05); }
@@ -210,8 +210,24 @@ body.dark-mode .wa-form select option { background-color: #1f2c34; color: white;
 .msg-time { font-size: 10px; color: rgba(0,0,0,0.45); }
 body.dark-mode .msg-time { color: rgba(255,255,255,0.6); }
 .double-tick { font-size: 10px; color: #34B7F1; font-weight: bold; }
-.wa-footer-bar { background: #f0f0f0; padding: 10px; display: flex; align-items: center; gap: 10px; }
+
+/* --- FIX FOR WHATSAPP FOOTER & INPUT --- */
+.wa-footer-bar {
+  background: #f0f0f0; padding: 10px; display: flex; align-items: center; gap: 10px; border-top: 1px solid #ddd;
+}
 body.dark-mode .wa-footer-bar { background: #1f2c34; border-top: 1px solid rgba(255,255,255,0.1); }
-.btn-whatsapp-send { background: #075E54; color: white; border: none; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 18px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: 0.2s; }
+
+/* Added missing input style to make it look "Complete" */
+.wa-footer-bar input {
+  flex: 1; padding: 10px 15px; border-radius: 20px; border: none; outline: none; background: white;
+}
+body.dark-mode .wa-footer-bar input { background: #2a3942; color: white; }
+
+.btn-whatsapp-send {
+  background: #075E54; color: white; border: none; border-radius: 50%; width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center; font-size: 18px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: 0.2s;
+}
+/* Ensure icon shows even if HTML is empty */
+.btn-whatsapp-send:empty::before { content: '➤'; margin-left: 2px; font-size: 16px; }
 .btn-whatsapp-send:hover { transform: scale(1.1); background: #128C7E; }
-        
+                                  
