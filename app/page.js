@@ -367,10 +367,11 @@ ${notes ? `"${notes}"` : "None"}
       <section className="mid-banner parallax-bg">
         <div className="mid-content">
           <h2>Bulk Orders? We've got you covered.</h2>
-          <p>Reliable Supply for Events, Caterers & Offices in Jalandhar.</p>
+          <p>Reliable Supply for Events & Caterers in Nearyby Areas.</p>
           <a href="tel:+919814812623" className="btn-glow-gold">Call for Bulk Rates 📞</a>
         </div>
       </section>
+  <Stats />
 
       <section className="section" id="order">
         <h2 className="section-title">Quick WhatsApp Order</h2>
