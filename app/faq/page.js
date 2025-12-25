@@ -1,7 +1,5 @@
 'use client'; // 👈 Ye line sabse zaroori hai App Router me
-
 import React, { useState } from 'react';
-import Footer from '../../components/Footer'; // Apna Footer path check kar lein
 import styles from '../../styles/FaqPage.module.css'; // CSS path
 
 const faqData = [
