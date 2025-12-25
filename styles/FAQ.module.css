@@ -1,0 +1,100 @@
+/* --- CONTAINER --- */
+.faqSection {
+  padding: 60px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.faqContainer {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* --- ITEM --- */
+.faqItem {
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.faqItem:last-child {
+  border-bottom: none;
+}
+
+.faqItem:hover {
+  background: #f9f9f9;
+}
+
+/* --- QUESTION --- */
+.question {
+  padding: 20px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #444;
+}
+
+.icon {
+  font-size: 1.5rem;
+  color: #ffa500; /* Brand Orange */
+  font-weight: bold;
+}
+
+/* --- ANSWER (Animation Magic) --- */
+.answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, padding 0.3s;
+  padding: 0 20px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* --- ACTIVE STATE --- */
+.active .answer {
+  max-height: 200px; /* Text ke hisaab se height khulegi */
+  padding-bottom: 20px;
+}
+
+.active .question {
+  color: #ffa500; /* Active hone pe orange ho jayega */
+}
+
+/* --- DARK MODE SUPPORT --- */
+:global(body.dark-mode) .heading {
+  color: #fff;
+}
+
+:global(body.dark-mode) .faqContainer {
+  background: #1f2937; /* Dark Grey */
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+:global(body.dark-mode) .faqItem {
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+:global(body.dark-mode) .faqItem:hover {
+  background: #2d3748;
+}
+
+:global(body.dark-mode) .question {
+  color: #e2e8f0;
+}
+
+:global(body.dark-mode) .answer {
+  color: #a0aec0;
+}
