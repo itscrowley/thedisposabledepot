@@ -370,23 +370,37 @@ ${notes ? `"${notes}"` : "None"}
           <a href="tel:+919814812623" className="btn-glow-gold">Call for Bulk Rates 📞</a>
         </div>
       </section>
-  {/* 👇👇 YAHAN PASTE KAREIN (Purana <div> hata kar) 👇👇 */}
+  {/* 👇👇 ISSE COPY KARKE YAHAN PASTE KAREIN 👇👇 */}
       <section style={{
-          /* Warehouse Image with Dark Overlay */
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop')`,
-          backgroundAttachment: 'fixed', /* Parallax Magic */
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
+          position: 'relative',
+          overflow: 'hidden',
           padding: '100px 0',
           marginTop: '50px',
           marginBottom: '50px',
-          width: '100%',
-          position: 'relative'
       }}>
-        <Stats />
+          {/* Background Layer (Blurred) */}
+          <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '110%',
+              height: '110%',
+              transform: 'translate(-5%, -5%)',
+              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop')`,
+              backgroundAttachment: 'fixed',
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              filter: 'blur(8px)', /* ✨ Blur Effect */
+              zIndex: '-1'
+          }}></div>
+
+          {/* Content Layer (Sharp) */}
+          <div style={{ position: 'relative', zIndex: '1' }}>
+               <Stats />
+          </div>
       </section>
       {/* 👆👆 YAHAN KHATAM 👆👆 */}
+
       <section className="section" id="order">
         <h2 className="section-title">Quick WhatsApp Order</h2>
         
