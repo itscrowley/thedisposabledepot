@@ -311,63 +311,73 @@ body.dark-mode .wa-form select, body.dark-mode .wa-form textarea { border-bottom
 body.dark-mode .msg-time { color: rgba(255,255,255,0.6); }
 .double-tick { font-size: 10px; color: #34B7F1; font-weight: bold; }
 
-/* ================= WHATSAPP FOOTER (CLEAN WHITE DESIGN) ================= */
+/* ================= WHATSAPP FOOTER (WHITE THEME FIX) ================= */
+
+/* 1. Footer Container - White Background */
 .wa-footer-bar { 
   margin: 0 !important; 
-  padding: 5px 15px !important; 
-  background: #ffffff !important; /* White Background */
+  padding: 8px 15px !important; 
+  background: #ffffff !important; /* Force White */
   display: flex !important; 
   align-items: center !important; 
   justify-content: space-between !important;
-  gap: 5px !important; 
-  border-top: 1px solid #f2f2f2 !important; /* Subtle border */
+  gap: 10px !important; 
+  border-top: 1px solid #e5e7eb !important; /* Light Grey Border */
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  min-height: 55px !important;
+  min-height: 60px !important;
 }
 body.dark-mode .wa-footer-bar { background: #1f2c34 !important; border-top: 1px solid rgba(255,255,255,0.1) !important; }
 
-/* INPUT BOX (Clean & Transparent) */
+/* 2. Input Box - Transparent on White */
 .wa-footer-bar input { 
   flex-grow: 1 !important; 
-  padding: 10px 5px !important; 
+  padding: 10px 0px !important; 
   border: none !important; 
   outline: none !important; 
-  background: transparent !important; /* White ke upar transparent */
-  font-size: 15px !important; 
-  color: #333 !important;
+  background: transparent !important; 
+  font-size: 16px !important; 
+  color: #4b5563 !important; /* Dark Grey Text */
 }
 body.dark-mode .wa-footer-bar input { color: white !important; }
 
-/* SEND BUTTON (Green Arrow + Smiley) */
+/* 3. Send Button - Transparent & Icons Only */
 .btn-whatsapp-send { 
-  background: transparent !important; /* No Green Circle */
-  border: none !important; 
-  box-shadow: none !important; /* No Shadow */
+  background: transparent !important; /* Remove Green Circle */
+  box-shadow: none !important; 
+  border: none !important;
   width: auto !important; 
   height: auto !important; 
-  min-width: auto !important;
-  padding: 0 5px !important;
+  min-width: auto !important; 
+  padding: 0 !important;
+  margin: 0 !important;
+  
   display: flex !important; 
   align-items: center !important; 
-  gap: 12px !important; /* Space between Smiley and Arrow */
+  justify-content: center !important; 
+  gap: 15px !important; /* Space between Smiley and Arrow */
   cursor: pointer !important; 
+  
+  /* Trick: Hide any existing text/icon inside HTML */
+  font-size: 0 !important; 
 }
 
-/* 1. Smiley Icon (Grey) */
+/* 4. Smiley Icon (Grey) */
 .btn-whatsapp-send::before { 
   content: '☺' !important; 
-  font-size: 26px !important; 
+  font-size: 28px !important; /* Visible Size */
   color: #9ca3af !important; /* Light Grey */
   display: block !important;
+  line-height: 1 !important;
 }
 
-/* 2. Arrow Icon (Dark Green) */
+/* 5. Arrow Icon (WhatsApp Green) */
 .btn-whatsapp-send::after { 
   content: '➤' !important; 
-  font-size: 24px !important; 
+  font-size: 24px !important; /* Visible Size */
   color: #075E54 !important; /* WhatsApp Green */
   display: block !important;
+  line-height: 1 !important;
 }
 
 /* Hover Effect */
