@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import styles from '../styles/Stats.module.css';
 
 const statsData = [
-  { id: 1, target: 5, label: "Years Experience", icon: "🗓️", suffix: "+" },
-  { id: 2, target: 1200, label: "Happy Clients", icon: "🤝", suffix: "+" },
-  { id: 3, target: 50, label: "Cities Served", icon: "🚚", suffix: "+" },
+  { id: 1, target: 2, label: "Years Experience", icon: "🗓️", suffix: "+" },
+  { id: 2, target: 100, label: "Happy Clients", icon: "🤝", suffix: "+" },
+  { id: 3, target: 2, label: "Cities Served", icon: "🚚", suffix: "+" },
   { id: 4, target: 100, label: "Quality Promise", icon: "✅", suffix: "%" },
 ];
 
