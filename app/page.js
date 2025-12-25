@@ -333,10 +333,10 @@ ${notes ? `"${notes}"` : "None"}
           <h2 className="section-title" style={{ marginBottom: "30px" }}>The Wholesale Advantage</h2>
           <div className="swipe-container">
             <div className="swipe-card">
-              <div className="swipe-icon">🚀</div>
+              <div className="swipe-icon">📦</div>
               <div className="swipe-text">
-                <h4>Fast Delivery</h4>
-                <p>Same day dispatch in Jalandhar.</p>
+                <h4>Consistent Stock Availability</h4>
+                <p>Reliable supply so your daily operations never stop..</p>
               </div>
             </div>
             <div className="swipe-card">
