@@ -1,30 +1,25 @@
-/* 1. SABSE PEHLE FONT IMPORT KARO (Yeh Line 1 honi chahiye) */
+/* 1. FONTS IMPORT (Sabse Top Par) */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-/* 2. PHIR TAILWIND KO BULAO */
+/* 2. TAILWIND SETUP */
 @import "tailwindcss";
 @source "../components";
 
-/* 3. AB STYLES FORCE KARO (Nuclear Override) */
+/* 3. FORCE BOLD FONTS (Taaki Text Mota Dikhe) */
 @layer base {
   html, body {
     font-family: 'Poppins', sans-serif !important;
   }
-
-  /* Headings ko zabardasti Mota (Bold) karo */
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 800 !important; /* Extra Bold */
+    font-weight: 700 !important;
     color: inherit;
   }
-
-  /* Buttons aur Strong text ko bhi Bold karo */
   b, strong, button, .btn, .font-bold {
     font-weight: 700 !important;
   }
 }
 
-/* 4. ISKE NEECHE TUMHARA BAAKI DESIGN CODE (Jo tumne bheja tha) */
-
+/* 4. MAIN STYLES */
 :root {
   --primary: #f97316;
   --primary-dark: #c2410c;
@@ -54,7 +49,6 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  /* Yaha variable use kar rahe hain, par upar wala !important jeetega */
   font-family: 'Poppins', 'Helvetica Neue', sans-serif;
   background-color: var(--bg-body);
   color: var(--text-main);
@@ -112,8 +106,7 @@ header.scrolled {
   border-radius: 50px;
 }
 
-/* ================= HERO SECTION ================= */
-
+/* ================= HERO SECTION (Original Image Restored) ================= */
 .parallax-wrapper { position: relative; width: 100%; overflow: hidden; }
 
 .hero {
@@ -127,6 +120,7 @@ header.scrolled {
   padding-top: 150px; 
   padding-bottom: 50px;
   position: relative;
+  /* AAPKI ORIGINAL IMAGE 👇 */
   background-image: url("https://plus.unsplash.com/premium_photo-1747850753779-6d764d91935e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   background-attachment: fixed;
   background-position: center;
@@ -219,7 +213,7 @@ body.dark-mode .btn-hero-call { color: #fff; border-color: rgba(255,255,255,0.6)
   100% { box-shadow: 0 0 5px rgba(255,255,255,0.3); }
 }
 
-/* THEME SWITCH */
+/* THEME SWITCH & UTILS */
 .theme-switch { position: relative; display: inline-block; width: 54px; height: 28px; flex-shrink: 0; }
 .theme-switch input { opacity: 0; width: 0; height: 0; }
 .slider {
@@ -240,7 +234,6 @@ input:checked + .slider:before { transform: translateX(26px); }
 .icon-sun, .icon-moon { font-size: 12px; z-index: 1; color: var(--text-main); }
 body.dark-mode .icon-sun, body.dark-mode .icon-moon { color: #fff; }
 
-/* MARQUEE */
 .marquee-strip {
   width: 100%; margin-top: 40px; margin-bottom: 0px; padding: 14px 0;
   background: linear-gradient(90deg, #ffedd5 0%, #fdba74 50%, #ffedd5 100%);
@@ -277,61 +270,30 @@ body.dark-mode .marquee-track span { color: #fff; text-shadow: 0 1px 3px rgba(0,
 .card-tag { font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--secondary); background: rgba(22, 163, 74, 0.1); padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 8px; }
 .card.highlight { border: 2px solid var(--secondary); }
 
-/* --- WHY US SECTION --- */
+/* WHY US SECTION */
 .why-us-wrapper {
-  position: relative;
-  width: 100%;
-  margin-bottom: 60px;
-  border-top: 1px solid rgba(0,0,0,0.1); 
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  z-index: 1; 
-  overflow: hidden; 
+  position: relative; width: 100%; margin-bottom: 60px; border-top: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); z-index: 1; overflow: hidden; 
 }
-
 .why-us-wrapper::before {
-  content: "";
-  position: absolute;
-  top: -10px; left: -10px; right: -10px; bottom: -10px;
-  background-image: url("https://plus.unsplash.com/premium_photo-1681426736883-49a5787eee8e?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-  background-attachment: fixed; 
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  filter: blur(1px); 
-  z-index: -1; 
+  content: ""; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px;
+  background-image: url("https://plus.unsplash.com/premium_photo-1681426736883-49a5787eee8e?q=80&w=1932&auto=format&fit=crop");
+  background-attachment: fixed; background-position: center; background-size: cover; background-repeat: no-repeat; filter: blur(1px); z-index: -1; 
 }
-
 .why-us-glass {
-  position: relative; 
-  z-index: 2;
-  width: 100%; 
-  height: 100%;
-  padding: 50px 0;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(5px); 
+  position: relative; z-index: 2; width: 100%; height: 100%; padding: 50px 0;
+  background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(5px); 
 }
-
-body.dark-mode .why-us-glass { 
-  background: rgba(15, 23, 42, 0.85); 
-}
+body.dark-mode .why-us-glass { background: rgba(15, 23, 42, 0.85); }
 
 .swipe-container {
-  position: relative;
-  z-index: 3;
-  display: flex; justify-content: center; gap: 20px;
-  padding: 0 20px; max-width: 1200px; margin: 0 auto;
-  flex-wrap: wrap;
+  position: relative; z-index: 3; display: flex; justify-content: center; gap: 20px; padding: 0 20px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap;
 }
-
 .swipe-card {
-  background: var(--card-bg); 
-  border: 1px solid var(--glass-border-strong);
+  background: var(--card-bg); border: 1px solid var(--glass-border-strong);
   padding: 25px; border-radius: 20px; min-width: 220px; flex: 1;
   display: flex; flex-direction: column; align-items: center; text-align: center;
-  box-shadow: 0 5px 15px var(--shadow-color); transition: all 0.3s;
-  position: relative; overflow: hidden;
+  box-shadow: 0 5px 15px var(--shadow-color); transition: all 0.3s; position: relative; overflow: hidden;
 }
-
 .swipe-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 15px 30px rgba(249, 115, 22, 0.2); }
 .swipe-icon { font-size: 40px; margin-bottom: 15px; }
 .swipe-text h4 { font-size: 18px; margin: 0 0 5px; color: var(--primary); font-weight: 800; }
@@ -339,50 +301,91 @@ body.dark-mode .why-us-glass {
 
 /* MID BANNER */
 .mid-banner {
-  padding: 120px 20px;
-  background-image: url("https://images.unsplash.com/photo-1648622981113-1e0f7e2c1b4e?q=80&w=2069&auto=format&fit=crop");
-  margin: 60px 0; 
-  text-align: center; 
-  color: white; 
-  position: relative;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: 1;
+  padding: 120px 20px; background-image: url("https://images.unsplash.com/photo-1648622981113-1e0f7e2c1b4e?q=80&w=2069&auto=format&fit=crop");
+  margin: 60px 0; text-align: center; color: white; position: relative;
+  background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; z-index: 1;
 }
-.mid-banner::before { 
-  content: ''; 
-  position: absolute; 
-  inset: 0; 
-  background: rgba(0,0,0,0.4); 
-  z-index: -1;
-}
+.mid-banner::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: -1; }
 .mid-content { position: relative; z-index: 10; }
 .mid-content h2 { font-size: 36px; margin-bottom: 10px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
 .mid-content p { font-size: 20px; font-weight: 500; text-shadow: 0 2px 10px rgba(0,0,0,0.5); margin-bottom: 40px; }
 
 /* BUTTON CSS */
 .btn-glow-gold {
-  display: inline-block; 
-  padding: 16px 40px; 
-  font-size: 18px; font-weight: 800; color: #fff;
-  text-transform: uppercase; letter-spacing: 1px; 
-  background: rgba(255, 255, 255, 0.15);
-  border: 2px solid #fff; border-radius: 50px; 
-  backdrop-filter: blur(5px);
-  box-shadow: 0 0 10px rgba(255,255,255,0.5), 0 0 20px var(--primary);
-  animation: glowingGold 2s infinite ease-in-out; 
-  transition: 0.3s;
-  text-decoration: none;
+  display: inline-block; padding: 16px 40px; font-size: 18px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 1px; 
+  background: rgba(255, 255, 255, 0.15); border: 2px solid #fff; border-radius: 50px; 
+  backdrop-filter: blur(5px); box-shadow: 0 0 10px rgba(255,255,255,0.5), 0 0 20px var(--primary);
+  animation: glowingGold 2s infinite ease-in-out; transition: 0.3s; text-decoration: none;
 }
 .btn-glow-gold:hover { background: var(--primary); border-color: var(--primary); transform: scale(1.05); }
 
 @keyframes glowingGold {
-  0% { box-shadow: 0 0 5px rgba(255,255,255,0.3); }
-  50% { box-shadow: 0 0 15px rgba(255,255,255,0.6), 0 0 5px var(--primary); }
-  100% { box-shadow: 0 0 5px rgba(255,255,255,0.3); }
+  0% { box-shadow: 0 0 5px rgba(255,255,255,0.3); } 50% { box-shadow: 0 0 15px rgba(255,255,255,0.6), 0 0 5px var(--primary); } 100% { box-shadow: 0 0 5px rgba(255,255,255,0.3); }
 }
-
-/* UTILITIES */
 @keyframes fadeInUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+
+/* =========================================
+   WHATSAPP SECTION (Restored Fully)
+   ========================================= */
+#order { padding: 60px 15px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+.wa-card {
+  max-width: 500px; margin: 0 auto;
+  background: #efeae2;
+  background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+  background-size: 400px; border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  overflow: hidden; border: 1px solid rgba(0,0,0,0.1);
+}
+body.dark-mode .wa-card {
+  background-color: #0b141a; background-blend-mode: overlay; border: 1px solid rgba(255,255,255,0.05);
+}
+.wa-header {
+  background: #075E54; padding: 10px 15px; display: flex; align-items: center; color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: relative; z-index: 10;
+}
+body.dark-mode .wa-header { background: #1f2c34; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.wa-profile-pic img { width: 60px; height: 60px; border-radius: 50%; margin-right: 12px; border: 1px solid rgba(255,255,255,0.2); }
+.wa-info { flex: 1; }
+.wa-name { margin: 0; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+.wa-verified { font-size: 12px; background: #25D366; color: white; padding: 2px 4px; border-radius: 50%; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center; }
+.wa-status { margin: 0; font-size: 12px; opacity: 0.8; }
+.wa-actions { font-size: 18px; letter-spacing: 15px; opacity: 0.8; cursor: pointer; }
+
+.wa-body { padding: 20px; display: flex; flex-direction: column; gap: 15px; min-height: 300px; }
+.msg-row { display: flex; width: 100%; }
+.msg-row.incoming { justify-content: flex-start; }
+.msg-row.outgoing { justify-content: flex-end; }
+.msg-bubble {
+  max-width: 85%; padding: 8px 10px; border-radius: 7.5px; position: relative;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15); font-size: 14px; line-height: 1.4;
+  background: #fff; color: #111; border-top-left-radius: 0;
+}
+body.dark-mode .msg-bubble { background: #1f2c34; color: #fff; border: 1px solid rgba(255,255,255,0.05); }
+.green-bubble {
+  background: #dcf8c6; color: #111; border-top-left-radius: 7.5px; border-top-right-radius: 0; min-width: 200px;
+}
+body.dark-mode .green-bubble { background: #005c4b; color: #fff; border: 1px solid rgba(255,255,255,0.05); }
+.bubble-label { display: block; font-size: 10px; color: #075E54; font-weight: 700; text-transform: uppercase; margin-bottom: 2px; }
+body.dark-mode .bubble-label { color: #25D366; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+.wa-form select, .wa-form textarea {
+  width: 100%; background: transparent; border: none; border-bottom: 1px dashed rgba(0,0,0,0.2);
+  font-family: inherit; font-size: 15px; color: inherit; padding: 5px 0; outline: none; appearance: none;
+}
+body.dark-mode .wa-form select, body.dark-mode .wa-form textarea { border-bottom: 1px dashed rgba(255,255,255,0.3); }
+body.dark-mode .wa-form select option { background-color: #1f2c34; color: white; }
+.wa-form select { cursor: pointer; }
+.wa-form textarea { resize: none; min-height: 24px; }
+.msg-meta { display: flex; justify-content: flex-end; align-items: center; gap: 4px; margin-top: 2px; }
+.msg-time { font-size: 10px; color: rgba(0,0,0,0.45); }
+body.dark-mode .msg-time { color: rgba(255,255,255,0.6); }
+.double-tick { font-size: 10px; color: #34B7F1; font-weight: bold; }
+
+.wa-footer-bar {
+  background: #f0f0f0; padding: 10px; display: flex; align-items: center; gap: 10px;
+}
+body.dark-mode .wa-footer-bar { background: #1f2c34; border-top: 1px solid rgba(255,255,255,0.1); }
+.btn-whatsapp-send {
+  background: #075E54; color: white; border: none; border-radius: 50%; width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center; font-size: 18px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: 0.2s;
+}
+.btn-whatsapp-send:hover { transform: scale(1.1); background: #128C7E; }
