@@ -44,7 +44,7 @@ body.dark-mode header { background: rgba(15, 23, 42, 0.25); border: 1px solid rg
 header.scrolled { top: 10px; padding: 10px 10px; backdrop-filter: blur(10px) saturate(200%); }
 
 .brand { display: flex; justify-content: center; align-items: center; width: 100%; }
-.logo-img { height: 40px; width: auto; max-width: 100%; object-fit: cover; display: block; border-radius: 50px; }
+.logo-img { height: 35px; width: auto; max-width: 100%; object-fit: cover; display: block; border-radius: 50px; }
 
 /* ================= HERO SECTION (FIXED FOR MOBILE) ================= */
 .parallax-wrapper { position: relative; width: 100%; overflow: hidden; }
