@@ -461,7 +461,7 @@ body.dark-mode .wa-card {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: relative; z-index: 10;
 }
 body.dark-mode .wa-header { background: #1f2c34; border-bottom: 1px solid rgba(255,255,255,0.1); }
-.wa-profile-pic img { width: 40px; height: 40px; border-radius: 50%; margin-right: 12px; border: 1px solid rgba(255,255,255,0.2); }
+.wa-profile-pic img { width: 60px; height: 60px; border-radius: 50%; margin-right: 12px; border: 1px solid rgba(255,255,255,0.2); }
 .wa-info { flex: 1; }
 .wa-name { margin: 0; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 5px; }
 .wa-verified { font-size: 12px; background: #25D366; color: white; padding: 2px 4px; border-radius: 50%; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center; }
