@@ -93,7 +93,7 @@ header.scrolled {
 .logo-img { 
   height: 60px; /*  original 60px */
   width: auto; 
-  max-width: 90%; /*  original 100px */
+  max-width: 100%; /*  original 100px */
   object-fit: cover; 
   display: block; 
   border-radius: 50px; /* Aapka original style */
