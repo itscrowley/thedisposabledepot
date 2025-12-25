@@ -378,7 +378,7 @@ ${notes ? `"${notes}"` : "None"}
         <div className="wa-card">
           <div className="wa-header">
             <div className="wa-profile-pic">
-              <img src="https://thedisposabledepot.wordpress.com/wp-content/uploads/2025/02/1000062278.jpg?w=1024" alt="DP" />
+              <img src="logo.png" alt="DP" />
             </div>
             <div className="wa-info">
               <h3 className="wa-name">The Disposable Depot <span className="wa-verified">✔</span></h3>
