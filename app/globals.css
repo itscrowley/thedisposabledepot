@@ -51,7 +51,7 @@ header {
   /* Sizing: Content ke hisaab se adjust hoga */
   width: auto;             /* Full width hataya */
   max-width: 90%;          /* Mobile par screen se bahar na jaye */
-  min-width: 300px;        /* Bohot chhota na ho */
+  min-width: auto;        /* Bohot chhota na ho 300px */
   
   /* --- PILL SHAPE MAGIC --- */
   border-radius: 50px;     /* Pill shape */
