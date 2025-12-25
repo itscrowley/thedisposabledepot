@@ -1,28 +1,28 @@
 @import "tailwindcss";
 @source "../components";
-/* --- YE HAIN WO LINEIN JO FIX KARENGI (FORCE BOLD) --- */
-@layer base {
-  /* Poppins Font ko wapas lagao */
-  html, body {
-    font-family: 'Poppins', sans-serif !important;
-  }
-  
-  /* Headings ko wapas Mota (Bold) karo */
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 800 !important; /* Extra Bold */
-    color: inherit;
-  }
-  
-  /* Buttons aur Strong text ko bhi bold karo */
-  b, strong, button, .btn {
-    font-weight: 700 !important;
-  }
+/* FIX: Font Import ko sabse upar rakhna zaroori hai */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* --- NUCLEAR OVERRIDE (Force Bold) --- */
+
+/* 1. Body par Font Force karo */
+html, body {
+  font-family: 'Poppins', sans-serif !important;
 }
 
-/* --- ISKE NEECHE TUMHARA PURANA CODE SHURU HOGA --- */
+/* 2. Headings ko Extra Bold (800) force karo */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 800 !important; 
+  letter-spacing: -0.5px; /* Thoda tight spacing professional look ke liye */
+  color: inherit;
+}
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+/* 3. Buttons aur Strong text ko Bold (700) force karo */
+strong, b, button, .btn, .font-bold {
+  font-weight: 700 !important;
+}
 
+/* --- YAHAN SE TUMHARA BAAKI VARIABLE CODE SHURU HOGA --- */
 :root {
   --primary: #f97316;
   --primary-dark: #c2410c;
