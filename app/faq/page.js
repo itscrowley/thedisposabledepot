@@ -58,8 +58,6 @@ export default function FAQPage() {
           ))}
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }
