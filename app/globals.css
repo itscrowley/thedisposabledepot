@@ -1,9 +1,25 @@
 @import "tailwindcss";
 @source "../components";
-/* Tailwind Reset Fix - Headings ko wapas Bold karne ke liye */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700; /* Ya 'bold' likh sakte ho */
+/* --- YE HAIN WO LINEIN JO FIX KARENGI (FORCE BOLD) --- */
+@layer base {
+  /* Poppins Font ko wapas lagao */
+  html, body {
+    font-family: 'Poppins', sans-serif !important;
+  }
+  
+  /* Headings ko wapas Mota (Bold) karo */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 800 !important; /* Extra Bold */
+    color: inherit;
+  }
+  
+  /* Buttons aur Strong text ko bhi bold karo */
+  b, strong, button, .btn {
+    font-weight: 700 !important;
+  }
 }
+
+/* --- ISKE NEECHE TUMHARA PURANA CODE SHURU HOGA --- */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
 
