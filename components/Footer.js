@@ -82,8 +82,8 @@ const Footer = () => {
 <div style={{ marginTop: '20px', borderRadius: '10px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.2)' }}>
   <iframe 
     width="100%" 
-    height="100" 
-    frameBorder="1" 
+    height="150" 
+    frameBorder="0" 
     scrolling="no" 
     marginHeight="0" 
     marginWidth="0" 
