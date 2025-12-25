@@ -370,28 +370,29 @@ ${notes ? `"${notes}"` : "None"}
           <a href="tel:+919814812623" className="btn-glow-gold">Call for Bulk Rates 📞</a>
         </div>
       </section>
-  {/* 👇👇👇 NAYA CODE YAHAN PASTE KAREIN 👇👇👇 */}
-      
+  {/* 👇👇 CLEAR IMAGE PARALLAX SECTION 👇👇 */}
       <section style={{
           position: 'relative',
           padding: '100px 0',
           marginTop: '50px',
           marginBottom: '50px',
+          
+          /* Background Image */
           backgroundImage: `url('https://images.unsplash.com/photo-1761481755390-83999d790b95?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
-          backgroundAttachment: 'fixed',
+          backgroundAttachment: 'fixed', /* Parallax Effect */
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
       }}>
-          {/* Blur Overlay */}
+          
+          {/* Dark Overlay (Taaki text padha jaye) */}
           <div style={{
               position: 'absolute',
               top: 0,
               left: 0,
               width: '100%',
               height: '100%',
-              backgroundColor: 'rgba(0, 0, 0, 0.6)', 
-              backdropFilter: 'blur(8px)',
+              backgroundColor: 'rgba(0, 0, 0, 0.6)', /* Sirf Kala Rang (No Blur) */
               zIndex: '0'
           }}></div>
 
@@ -400,8 +401,7 @@ ${notes ? `"${notes}"` : "None"}
                <Stats />
           </div>
       </section>
-
-      {/* 👆👆👆 YAHAN KHATAM 👆👆👆 */}
+      {/* 👆👆 SECTION END 👆👆 */}
 
       <section className="section" id="order">
         <h2 className="section-title">Quick WhatsApp Order</h2>
