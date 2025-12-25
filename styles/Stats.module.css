@@ -1,75 +1,80 @@
+/* Container Layout */
 .statsSection {
-  padding: 60px 20px;
-  background: transparent;
-  margin-top: 20px; /* Thoda gap upar wale section se */
+  padding: 20px 10px;
+  width: 100%;
 }
 
 .container {
-  max-width: 1100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 30px;
-  text-align: center;
 }
 
+/* --- CARD STYLING (Light Mode - Default) --- */
 .card {
-  background: rgba(255, 255, 255, 0.7); /* Light Glass effect */
+  background: rgba(255, 255, 255, 0.9); /* Thoda solid white taaki text clear dikhe */
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  /* Orange Tint Border */
+  border: 1px solid rgba(249, 115, 22, 0.2); 
+  border-radius: 20px;
   padding: 30px 20px;
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease;
-}
-
-/* --- IS CODE KO FILE KE SABSE NEECHE PASTE KAREIN --- */
-
-/* Dark Mode Card Background */
-:global(body.dark-mode) .card {
-  background: rgba(30, 30, 30, 0.85) !important; /* Dark Grey background */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Light border taaki card dikhe */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-/* Dark Mode Text Color */
-:global(body.dark-mode) .label {
-  color: #ddd !important; /* Light Grey text */
-}
-
-:global(body.dark-mode) .number {
-  text-shadow: 0 0 10px rgba(255, 165, 0, 0.3); /* Numbers thoda glow karenge */
+  text-align: center;
+  min-width: 200px;
+  flex: 1;
+  box-shadow: 0 10px 30px rgba(249, 115, 22, 0.1); /* Halka Orange Shadow */
+  transition: transform 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  border-color: #ffa500; /* Hover karne par Orange Border */
+  border-color: rgba(249, 115, 22, 0.6); /* Hover par border dark orange */
+  box-shadow: 0 15px 40px rgba(249, 115, 22, 0.2);
 }
 
 .icon {
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin-bottom: 10px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
 
 .number {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 800;
-  margin: 5px 0;
-  color: #333;
-  font-family: 'Helvetica Neue', sans-serif;
+  margin: 0;
   
-  /* Gradient Orange Text */
-  background: -webkit-linear-gradient(45deg, #ffa500, #ff4500);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* THEME COLOR: ORANGE */
+  color: #f97316; 
+  line-height: 1.2;
 }
 
 .label {
-  font-size: 0.9rem;
-  color: #666;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
+  margin-top: 5px;
+  color: #4b5563; /* Grey Label */
 }
 
-:global(body.dark-mode) .label { color: #aaa; }
+/* --- DARK MODE OVERRIDES --- */
+/* Jab dark mode on hoga */
+
+:global(body.dark-mode) .card {
+  background: rgba(15, 23, 42, 0.85); /* Dark Background */
+  border: 1px solid rgba(249, 115, 22, 0.3); /* Orange Border */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+:global(body.dark-mode) .number {
+  color: #f97316; /* Orange Text */
+  text-shadow: 0 0 20px rgba(249, 115, 22, 0.5); /* Orange Glow Effect */
+}
+
+:global(body.dark-mode) .label {
+  color: #d1d5db; /* Light Grey Label */
+}
