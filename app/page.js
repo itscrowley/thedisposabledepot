@@ -1,3 +1,4 @@
+import Stats from '../components/Stats';
 "use client"; // Ye line bahut zaroori hai interactivity ke liye
 
 import { useState, useEffect } from "react";
