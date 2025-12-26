@@ -267,7 +267,7 @@ body.dark-mode .wa-header { background: #1f2c34; border-bottom: 1px solid rgba(2
   min-height: 300px;
 }
 
-.msg-row { display: flex; width: 100%; }
+.msg-row { display: flex; width: 100%; margin-bottom: 5px; }
 .msg-row.incoming { justify-content: flex-start; }
 .msg-row.outgoing { justify-content: flex-end; }
 
