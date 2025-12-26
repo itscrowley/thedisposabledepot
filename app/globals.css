@@ -34,44 +34,52 @@ a { text-decoration: none; transition: 0.3s ease; }
 button { cursor: pointer; border: none; outline: none; }
 
 /* =========================================
-   DESKTOP ONLY HEADER FIX (Perfect Centered Pill)
+   DESKTOP ONLY: FLOATING PILL HEADER
    ========================================= */
 
 @media (min-width: 1024px) {
 
-  /* 1. Header (Pill Container) Adjustment */
+  /* 1. PILL CONTAINER (Hawa mein latakta hua) */
   header {
-    /* Pill ko bada karne ke liye padding badhayein */
-    padding: 12px 40px !important; 
+    /* Position adjust: Top se thoda neeche taaki 'Latakta' hua lage */
+    top: 30px !important;
     
-    /* Top se thoda neeche layein taaki chipka hua na lage */
-    top: 30px !important; 
+    /* Pill Shape: Side padding zyada taaki lambi capsule ban jaye */
+    padding: 15px 50px !important; 
     
-    /* Pill shape */
-    border-radius: 60px !important;
+    /* Perfect Round Edges */
+    border-radius: 100px !important;
     
-    /* Centering logic waisi hi rahegi */
-    width: fit-content !important; 
+    /* Glass Effect Thoda Strong */
+    background: rgba(255, 255, 255, 0.65) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15) !important; /* Gehra saaya taaki float lage */
+    
+    /* Size constraint */
+    width: fit-content !important;
     min-width: auto !important;
   }
 
-  /* 2. Brand Container (Centering Helper) */
-  .brand {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    width: auto !important;
-  }
-
-  /* 3. Logo Image (Size Increase) */
+  /* 2. LOGO IMAGE (Bada aur Clear) */
   .logo-img {
-    height: 60px !important; /* Mobile pe 30px hai, Yahan 60px (Double) */
-    width: auto !important;  /* Ratio maintain rahega */
-    object-fit: contain !important;
+    height: 90px !important; /* 👈 Yahan size control karein (ye kaafi bada hai) */
+    width: auto !important;
     display: block !important;
+    object-fit: contain !important;
+    
+    /* Agar image me extra space hai to usse hatane ke liye margin reset */
+    margin: 0 !important;
+  }
+  
+  /* Brand container ko tight rakhna */
+  .brand {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
-
 /* ================= HERO SECTION (FIXED FOR MOBILE) ================= */
 .parallax-wrapper { position: relative; width: 100%; overflow: hidden; }
 
