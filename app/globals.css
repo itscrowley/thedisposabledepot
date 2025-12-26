@@ -367,18 +367,18 @@ body.dark-mode .wa-spoof-input { color: white !important; }
   /* 1. Header Pill (Container) Bada Karein */
   header {
     /* Padding badhayein taaki pill khuli aur badi lage */
-    padding: 10px 20px !important; 
+    padding: 10px 12px !important; 
     
     /* Shape ko perfect round capsule banayein */
     border-radius: 100px !important;
     
     /* Thoda neeche shift karein taaki 'latakta hua' feel aaye */
-    top: 10px !important; 
+    top: 20px !important; 
   }
 
   /* 2. Logo Image (Image) Bada Karein */
   .logo-img {
-    height: 60px !important;  /* 👈 YAHAN CONTROL KAREIN (Pehle 30px tha, ab 90px) */
+    height: 70px !important;  /* 👈 YAHAN CONTROL KAREIN (Pehle 30px tha, ab 90px) */
     width: auto !important;
     max-width: none !important; /* Rok-tok hatayi */
   }
