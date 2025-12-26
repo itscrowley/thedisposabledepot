@@ -58,9 +58,8 @@
 
 .label {
   font-size: 1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-weight: 500;
+  text-transform: capitalize !important; /* Sirf Pehla Akshar Bada */
   margin-top: 5px;
   
   /* Dark Grey Text for Light Mode */
