@@ -1,57 +1,53 @@
-'use client'; 
-
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from '../styles/Stats.module.css';
 
-const statsData = [
-  { id: 1, target: 2, label: "Years Experience", icon: "🗓️", suffix: "+" },
-  { id: 2, target: 100, label: "Happy Clients", icon: "🤝", suffix: "+" },
-  { id: 3, target: 2, label: "Cities Served", icon: "🚚", suffix: "+" },
-  { id: 4, target: 100, label: "Quality Promise", icon: "✅", suffix: "%" },
+const stats = [
+  {
+    id: 1,
+    number: "2+",
+    label: "Years Experience",
+    icon: "📅" 
+  },
+  {
+    id: 2,
+    number: "100+",
+    label: "Happy Clients",
+    icon: "🤝"
+  },
+  {
+    id: 3,
+    number: "2+",
+    label: "Cities Served",
+    icon: "🚚"
+  },
+  {
+    id: 4,
+    number: "100%",
+    label: "Quality Promise",
+    icon: "✅"
+  }
 ];
 
 const Stats = () => {
   return (
-    <section className={styles.statsSection}>
+    <section className={styles.section}>
       <div className={styles.container}>
-        {statsData.map((stat) => (
-          <Counter key={stat.id} stat={stat} />
-        ))}
+        <div className={styles.grid}>
+          {stats.map((stat) => (
+            <div key={stat.id} className={styles.card}>
+              {/* Icon */}
+              <div className={styles.icon}>{stat.icon}</div>
+              
+              {/* Number (Orange & Bold) */}
+              <span className={styles.number}>{stat.number}</span>
+              
+              {/* Label (Grey & Clean) */}
+              <span className={styles.label}>{stat.label}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
-  );
-};
-
-const Counter = ({ stat }) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let start = 0;
-    const end = stat.target;
-    const duration = 2000; 
-    const increment = end / (duration / 16); 
-
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= end) {
-        setCount(end);
-        clearInterval(timer);
-      } else {
-        setCount(Math.ceil(start));
-      }
-    }, 16);
-
-    return () => clearInterval(timer);
-  }, [stat.target]);
-
-  return (
-    <div className={styles.card}>
-      <div className={styles.icon}>{stat.icon}</div>
-      <h3 className={styles.number}>
-        {count}{stat.suffix}
-      </h3>
-      <p className={styles.label}>{stat.label}</p>
-    </div>
   );
 };
 
