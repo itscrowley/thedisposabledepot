@@ -34,27 +34,42 @@ a { text-decoration: none; transition: 0.3s ease; }
 button { cursor: pointer; border: none; outline: none; }
 
 /* =========================================
-   DESKTOP ONLY HEADER FIX (Laptop/PC)
-   Sirf Header aur Logo bada hoga, Hero section nahi chheda.
+   DESKTOP ONLY HEADER FIX (Perfect Centered Pill)
    ========================================= */
 
 @media (min-width: 1024px) {
 
-  /* 1. Header Container (Pill) ko bada aur khula karein */
+  /* 1. Header (Pill Container) Adjustment */
   header {
-    padding: 12px 30px !important;  /* Padding badhayi taaki pill moti ho */
-    border-radius: 60px !important; /* Roundness maintain karein */
-    width: auto !important;         /* Content ke hisaab se faile */
-    min-width: 300px !important;    /* Kam se kam itna chouda ho */
+    /* Pill ko bada karne ke liye padding badhayein */
+    padding: 12px 40px !important; 
+    
+    /* Top se thoda neeche layein taaki chipka hua na lage */
+    top: 30px !important; 
+    
+    /* Pill shape */
+    border-radius: 60px !important;
+    
+    /* Centering logic waisi hi rahegi */
+    width: fit-content !important; 
+    min-width: auto !important;
   }
 
-  /* 2. Logo Image ko Bada Karein */
-  .logo-img {
-    height: 85px !important;      /* 👈 YAHAN SIZE CONTROL KAREIN (30px se 85px kar diya) */
-    width: auto !important;       /* Ratio kharab nahi hoga */
-    max-height: none !important;  /* Rok-tok hata di */
+  /* 2. Brand Container (Centering Helper) */
+  .brand {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: auto !important;
   }
-  
+
+  /* 3. Logo Image (Size Increase) */
+  .logo-img {
+    height: 60px !important; /* Mobile pe 30px hai, Yahan 60px (Double) */
+    width: auto !important;  /* Ratio maintain rahega */
+    object-fit: contain !important;
+    display: block !important;
+  }
 }
 
 /* ================= HERO SECTION (FIXED FOR MOBILE) ================= */
