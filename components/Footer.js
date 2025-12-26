@@ -16,7 +16,7 @@ const Footer = () => {
     <h2 className={styles.footerLogo}>The Disposable Depot</h2>
   </Link>
   {/* 👆👆 YAHAN KHATAM 👆👆 */}
-            <p className={styles.text}>
+            <p className={styles.text} style={{ marginBottom: "20px" }}>
               Best quality disposable items for all your business and event needs. Wholesale rates available.
             </p>
             <div className={styles.socialLinks}>
@@ -84,23 +84,10 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className={styles.footerCol}>
-            <h3>Contact Us</h3>
-            <ul className={styles.contactInfo}>
-              <li>
-                <span className={styles.icon}><i className="fas fa-map-marker-alt"></i></span>
-                <span>Jalandhar, Punjab</span>
-              </li>
-              <li>
-                <span className={styles.icon}><i className="fas fa-phone-alt"></i></span>
-                <span>+91 98148-12623</span>
-              </li>
-              <li>
-                <span className={styles.icon}><i className="fas fa-envelope"></i></span>
-                <span>thedisposabledepot@gmail.com</span>
-              </li>
-            </ul>
+            <h3>Our Location</h3>
+            
             {/* 👇👇 Sahi Location Wala Map 👇👇 */}
-<div style={{ marginTop: '20px', borderRadius: '10px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.2)' }}>
+<div style={{ marginTop: '20px', borderRadius: '30px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.2)' }}>
   <iframe 
     width="100%" 
     height="150" 
