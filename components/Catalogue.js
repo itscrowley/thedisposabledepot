@@ -86,7 +86,7 @@ export default function Catalogue() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState('All');
-  const [searchQuery, setSearchQuery] = useState(''); // Search State
+  const [searchQuery, setSearchQuery] = useState('');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -109,6 +109,10 @@ export default function Catalogue() {
           let sheetImagesArray = rawSheetImages ? rawSheetImages.split(',').map(l => l.trim()).filter(l => l) : ['/images/default.jpg'];
           const finalImages = localImages[id] ? localImages[id] : sheetImagesArray;
 
+          // --- STOCK QUANTITY LOGIC ---
+          const stockQty = parseInt(clean(columns[13])) || 0; // Col N
+          const lowLimit = parseInt(clean(columns[14])) || 0; // Col O
+
           return {
             id: id, 
             title: clean(columns[1]), 
@@ -119,10 +123,11 @@ export default function Catalogue() {
             images: finalImages,
             btnText: clean(columns[7]) || 'Ask Price',
             isAvailable: clean(columns[8]).toLowerCase() !== 'out of stock',
-            // --- NEW FIELDS ---
-            price: clean(columns[9]),        // Column J
-            specialBadge: clean(columns[10]), // Column K
-            keywords: clean(columns[11])      // Column L
+            price: clean(columns[9]),
+            specialBadge: clean(columns[10]),
+            keywords: clean(columns[11]),
+            stockQty: stockQty,
+            isLowStock: stockQty > 0 && stockQty <= lowLimit
           };
         }).filter(item => item !== null && item.title);
         setItems(products);
@@ -132,7 +137,6 @@ export default function Catalogue() {
 
   const categories = ['All', ...new Set(items.map(item => item.category).filter(Boolean))];
 
-  // --- FILTER & SEARCH LOGIC ---
   const filteredItems = items.filter(item => {
     const matchesCategory = activeCategory === 'All' || item.category === activeCategory;
     const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -141,7 +145,6 @@ export default function Catalogue() {
     return matchesCategory && matchesSearch;
   });
 
-  // --- AUTO-SUGGESTIONS LOGIC ---
   const suggestions = searchQuery.length > 1 
     ? items.filter(i => i.title.toLowerCase().includes(searchQuery.toLowerCase())).slice(0, 5)
     : [];
@@ -196,6 +199,15 @@ export default function Catalogue() {
         .special-badge { position: absolute; top: 10px; right: 10px; background: #22c55e; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; z-index: 10; }
         .price-val { font-size: 1.2rem; font-weight: 800; color: #e46338; margin: 5px 0; }
 
+        /* --- BLINKING LOW STOCK CSS --- */
+        .low-stock-warning {
+          background: #fff3cd; color: #856404; padding: 4px 10px; border-radius: 6px;
+          font-size: 0.75rem; font-weight: 800; border: 1px solid #ffeeba;
+          margin-bottom: 10px; display: inline-block;
+          animation: blinker 1.5s linear infinite;
+        }
+        @keyframes blinker { 50% { opacity: 0.4; } }
+
         .out-of-stock-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 255, 255, 0.7); display: flex; align-items: center; justify-content: center; z-index: 10; color: #cc0000; font-weight: 800; font-size: 1.1rem; }
         @media (min-width: 1024px) { .img-container { height: 220px; padding: 15px; } }
         .catalogue-grid { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
@@ -207,7 +219,6 @@ export default function Catalogue() {
           <h2 className="main-title" style={{fontSize: '2rem', marginBottom: '10px'}}>Our Catalogue</h2>
         </div>
 
-        {/* --- SEARCH WITH SUGGESTIONS --- */}
         <div className="search-container">
           <input 
             type="text" 
@@ -229,44 +240,29 @@ export default function Catalogue() {
         </div>
         
         {!loading && (
-  <div className="category-scroll" style={{ display: 'flex', overflowX: 'auto', gap: '12px', padding: '10px 5px 20px 5px', marginBottom: '20px' }}>
-    <div style={{display:'flex', gap:'12px', margin: '0 auto'}}> 
-    {categories.map((cat) => (
-      <button key={cat} onClick={() => setActiveCategory(cat)}
-        style={{
-          padding: '10px 24px', 
-          borderRadius: '50px', 
-          cursor: 'pointer',
-          // --- 🔥 THEME FIX YAHAN HAI ---
-          background: activeCategory === cat 
-            ? 'linear-gradient(135deg, #e46338 0%, #ff8e53 100%)' 
-            : 'var(--card-bg)', // White in light, Dark in dark mode
-          color: activeCategory === cat 
-            ? '#fff' 
-            : 'var(--card-title)', // Black in light, White in dark mode
-          border: activeCategory === cat 
-            ? 'none' 
-            : '1px solid var(--card-border)',
-          // ----------------------------
-          fontWeight: '600', 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: '8px', 
-          flexShrink: 0,
-          transition: 'all 0.3s ease'
-        }}
-      >
-        <span>{getCategoryIcon(cat)}</span> {cat}
-      </button>
-    ))}
-    </div>
-  </div>
-)}
+          <div className="category-scroll" style={{ display: 'flex', overflowX: 'auto', gap: '12px', padding: '10px 5px 20px 5px', marginBottom: '20px' }}>
+            <div style={{display:'flex', gap:'12px', margin: '0 auto'}}> 
+            {categories.map((cat) => (
+              <button key={cat} onClick={() => setActiveCategory(cat)}
+                style={{
+                  padding: '10px 24px', borderRadius: '50px', cursor: 'pointer',
+                  background: activeCategory === cat ? 'linear-gradient(135deg, #e46338 0%, #ff8e53 100%)' : 'var(--card-bg)',
+                  color: activeCategory === cat ? '#fff' : 'var(--card-title)',
+                  border: activeCategory === cat ? 'none' : '1px solid var(--card-border)',
+                  fontWeight: '600', display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0, transition: 'all 0.3s ease'
+                }}
+              >
+                <span>{getCategoryIcon(cat)}</span> {cat}
+              </button>
+            ))}
+            </div>
+          </div>
+        )}
 
         <div className="catalogue-grid">
           {!loading && filteredItems.map((product) => (
             <div key={product.id} className="modern-card" style={{ opacity: product.isAvailable ? 1 : 0.8 }}>
-              <div className="img-container" onClick={() => openGallery(product)} style={{cursor: product.isAvailable ? 'pointer' : 'default'}}>
+              <div className="img-container" onClick={() => product.isAvailable && openGallery(product)} style={{cursor: product.isAvailable ? 'pointer' : 'default'}}>
                 {product.specialBadge && <span className="special-badge">{product.specialBadge}</span>}
                 {!product.isAvailable && <div className="out-of-stock-overlay">OUT OF STOCK</div>}
                 {product.tag && (
@@ -281,7 +277,13 @@ export default function Catalogue() {
                 <span style={{fontSize:'0.75rem', color:'#888', fontWeight:'600'}}>{product.category}</span>
                 <h3 className="card-title" style={{ margin: '5px 0', fontSize: '1.1rem' }}>{product.title}</h3>
                 
-                {/* --- PRICE --- */}
+                {/* --- SCRARCITY BADGE --- */}
+                {product.isLowStock && product.isAvailable && (
+                  <div className="low-stock-warning">
+                    ⚠️ ONLY {product.stockQty} LEFT!
+                  </div>
+                )}
+
                 {product.price && <div className="price-val">₹{product.price}</div>}
 
                 <p className="card-desc" style={{ fontSize: '0.85rem', marginBottom: '15px' }}>{product.desc}</p>
@@ -304,7 +306,7 @@ export default function Catalogue() {
         </div>
       </section>
 
-      {/* Lightbox */}
+      {/* Lightbox remain same */}
       <div id="lightbox" className={lightboxOpen ? "active" : ""} style={{ display: lightboxOpen ? "flex" : "none" }} onClick={closeLightbox}>
         <button id="close" onClick={closeLightbox}>&times;</button>
         <div className="lb-content">
