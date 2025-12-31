@@ -71,17 +71,17 @@ const getCategoryIcon = (category) => {
   if (lower === 'all') return '✨';
   return '📦';
 };
+
 // --- 🔥 CLOUDINARY HELPER FUNCTION 🔥 ---
-// Ye function check karega agar link Cloudinary ka hai toh use optimize karega
 const optimizeImage = (url, isLightbox = false) => {
   if (!url) return '/images/default.jpg';
   if (url.includes('cloudinary.com')) {
     const targetWidth = isLightbox ? 'w_1600' : 'w_800';
-    // f_auto: best format (webp), q_auto: compression, w_1000: size control
     return url.replace('/upload/', `/upload/f_auto,q_auto:best,${targetWidth},dpr_auto/`);
   }
   return url;
 };
+
 export default function Catalogue() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -103,12 +103,24 @@ export default function Catalogue() {
           const clean = (text) => text ? text.replace(/^"|"$/g, '').trim() : '';
           const id = clean(columns[0]);
           const rawSheetImages = clean(columns[6]); 
+          
+          // --- LOGIC FOR COLUMNS H & I ---
+          const customBtnText = clean(columns[7]); 
+          const stockStatus = clean(columns[8]); 
+
           let sheetImagesArray = rawSheetImages ? rawSheetImages.split(',').map(l => l.trim()).filter(l => l) : ['/images/default.jpg'];
           const finalImages = localImages[id] ? localImages[id] : sheetImagesArray;
+
           return {
-            id: id, title: clean(columns[1]), category: clean(columns[2]),
-            desc: clean(columns[3]), tag: clean(columns[4]), alt: clean(columns[5]),
-            images: finalImages
+            id: id, 
+            title: clean(columns[1]), 
+            category: clean(columns[2]),
+            desc: clean(columns[3]), 
+            tag: clean(columns[4]), 
+            alt: clean(columns[5]),
+            images: finalImages,
+            btnText: customBtnText || 'Ask Price', // Column H
+            isAvailable: stockStatus.toLowerCase() !== 'out of stock' // Column I
           };
         }).filter(item => item !== null && item.title);
         setItems(products);
@@ -120,7 +132,7 @@ export default function Catalogue() {
   const filteredItems = activeCategory === 'All' ? items : items.filter(item => item.category === activeCategory);
 
   const openGallery = (product) => {
-    if (product.images.length > 0) {
+    if (product.isAvailable && product.images.length > 0) {
       setCurrentProduct(product);
       setCurrentIndex(0);
       setLightboxOpen(true);
@@ -130,7 +142,6 @@ export default function Catalogue() {
   const nextImg = (e) => { e.stopPropagation(); setCurrentIndex((prev) => (prev + 1) % currentProduct.images.length); };
   const prevImg = (e) => { e.stopPropagation(); setCurrentIndex((prev) => (prev - 1 + currentProduct.images.length) % currentProduct.images.length); };
 
-  // WhatsApp Link Helper
   const getWhatsAppLink = (product) => {
     const text = `Hi, I am interested in *${product.title}*.\n\nImage: ${product.images[0]}\n\nWhat is the wholesale price?`;
     const encodedText = encodeURIComponent(text);
@@ -140,7 +151,6 @@ export default function Catalogue() {
   return (
     <>
       <style jsx global>{`
-        /* --- 🛡️ ROBUST CSS VARIABLES --- */
         :root {
           --cat-bg: #f8f9fa;
           --cat-title: #333333;
@@ -155,7 +165,6 @@ export default function Catalogue() {
           --btn-border: #e0e0e0;
         }
 
-        /* --- 🔥 PREMIUM DARK MODE (#0F172A) 🔥 --- */
         html.dark, body.dark, [data-theme='dark'], .dark-mode {
           --cat-bg: #0F172A !important;  
           --cat-title: #F8FAFC !important;
@@ -194,9 +203,16 @@ export default function Catalogue() {
           background-color: #ffffff;
           border-bottom: 1px solid var(--card-border);
           position: relative;
-          height: 180px; /* Thoda chota kiya taaki mobile me 2 fit ho jaye */
+          height: 180px; 
           overflow: hidden;
           padding: 10px;
+        }
+
+        .out-of-stock-overlay {
+          position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+          background: rgba(255, 255, 255, 0.7); display: flex;
+          align-items: center; justify-content: center; z-index: 10;
+          color: #cc0000; font-weight: 800; font-size: 1.1rem;
         }
 
         @media (min-width: 1024px) {
@@ -215,20 +231,14 @@ export default function Catalogue() {
         .category-scroll::-webkit-scrollbar { display: none; }
         .category-scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* --- 🔥 FIXED GRID SYSTEM 🔥 --- */
-        
-        /* DEFAULT (MOBILE): 2 ITEMS PER ROW */
         .catalogue-grid {
-          display: grid;
-          gap: 12px; /* Small gap for mobile */
-          grid-template-columns: repeat(2, 1fr); /* Zabardasti 2 columns */
+          display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr);
         }
 
-        /* DESKTOP (Large Screens): 4 ITEMS PER ROW */
         @media (min-width: 1024px) {
           .catalogue-grid {
             gap: 30px;
-            grid-template-columns: repeat(4, 1fr); /* Zabardasti 4 columns */
+            grid-template-columns: repeat(4, 1fr);
           }
         }
       `}</style>
@@ -283,15 +293,17 @@ export default function Catalogue() {
               key={product.id} 
               className="modern-card"
               style={{
+                opacity: product.isAvailable ? 1 : 0.8,
                 borderColor: product.tag ? '#e46338' : undefined,
                 borderWidth: product.tag ? '2px' : '1px'
               }}
               onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
               onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
-              <div className="img-container" onClick={() => openGallery(product)} style={{cursor:'pointer'}}>
+              <div className="img-container" onClick={() => product.isAvailable && openGallery(product)} style={{cursor: product.isAvailable ? 'pointer' : 'default'}}>
+                {!product.isAvailable && <div className="out-of-stock-overlay">OUT OF STOCK</div>}
                 {product.tag && (
-                  <span style={{ position: 'absolute', top: '10px', left: '10px', zIndex: 10, backgroundColor: '#e46338', color: 'white', padding: '3px 10px', borderRadius: '50px', fontSize: '0.65rem', fontWeight: 'bold', boxShadow: '0 2px 5px rgba(0,0,0,0.2)' }}>
+                  <span style={{ position: 'absolute', top: '10px', left: '10px', zIndex: 11, backgroundColor: '#e46338', color: 'white', padding: '3px 10px', borderRadius: '50px', fontSize: '0.65rem', fontWeight: 'bold', boxShadow: '0 2px 5px rgba(0,0,0,0.2)' }}>
                     {product.tag}
                   </span>
                 )}
@@ -302,29 +314,29 @@ export default function Catalogue() {
               </div>
 
               <div style={{ padding: '15px', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                <div onClick={() => openGallery(product)} style={{cursor:'pointer'}}>
+                <div onClick={() => product.isAvailable && openGallery(product)} style={{cursor: product.isAvailable ? 'pointer' : 'default'}}>
                   <span style={{fontSize:'0.75rem', color:'#888', textTransform:'uppercase', letterSpacing:'0.5px', fontWeight:'600'}}>
                     {product.category}
                   </span>
-                  {/* Title font size responsive */}
                   <h3 className="card-title" style={{ margin: '5px 0 5px 0', fontSize: '1.1rem', lineHeight: '1.3' }}>
                     {product.title}
                   </h3>
-                  {/* Desc hide/show logic or smaller font for mobile could be here, but keeping simple */}
                   <p className="card-desc" style={{ fontSize: '0.85rem', marginBottom: '15px', lineHeight: '1.4', display: '-webkit-box', WebkitLineClamp: '2', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                     {product.desc}
                   </p>
                 </div>
 
                 <div style={{ marginTop: 'auto' }}>
-                   <a href={getWhatsAppLink(product)} target="_blank" rel="noopener noreferrer"
+                   <a href={product.isAvailable ? getWhatsAppLink(product) : "#"} target={product.isAvailable ? "_blank" : "_self"} rel="noopener noreferrer"
                     style={{
                       display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', width: '100%', padding: '10px',
-                      background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)', color: 'white', borderRadius: '50px',
-                      textDecoration: 'none', fontWeight: '700', fontSize: '0.85rem', boxShadow: '0 4px 10px rgba(37, 211, 102, 0.3)'
+                      background: product.isAvailable ? 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)' : '#cccccc', 
+                      color: 'white', borderRadius: '50px',
+                      textDecoration: 'none', fontWeight: '700', fontSize: '0.85rem', boxShadow: product.isAvailable ? '0 4px 10px rgba(37, 211, 102, 0.3)' : 'none',
+                      pointerEvents: product.isAvailable ? 'auto' : 'none'
                     }}
                    >
-                     <i className="fab fa-whatsapp" style={{fontSize:'1rem'}}></i> Ask Price
+                     <i className="fab fa-whatsapp" style={{fontSize:'1rem'}}></i> {product.isAvailable ? product.btnText : "Sold Out"}
                    </a>
                 </div>
               </div>
