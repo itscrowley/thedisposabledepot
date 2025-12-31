@@ -91,7 +91,7 @@ export default function RootLayout({ children }) {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
         />
       </head>
-      <body>
+      <body className={inter.className}>
         {/* Ye script Google Bot ke liye hai (User ko nahi dikhegi) */}
         <script
           type="application/ld+json"
