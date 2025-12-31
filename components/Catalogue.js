@@ -116,9 +116,10 @@ export default function Catalogue() {
           let sheetImagesArray = rawSheetImages ? rawSheetImages.split(',').map(l => l.trim()).filter(l => l) : ['/images/default.jpg'];
           const finalImages = localImages[id] ? localImages[id] : sheetImagesArray;
 
-          // --- STOCK QUANTITY LOGIC ---
+          // --- STOCK QUANTITY & UNIT LOGIC ---
           const stockQty = parseInt(clean(columns[13])) || 0; // Col N
           const lowLimit = parseInt(clean(columns[14])) || 0; // Col O
+          const unit = clean(columns[15]) || '';              // Col P
 
           return {
             id: id, 
@@ -134,6 +135,7 @@ export default function Catalogue() {
             specialBadge: clean(columns[10]),
             keywords: clean(columns[11]),
             stockQty: stockQty,
+            unit: unit, // Unit added here
             isLowStock: stockQty > 0 && stockQty <= lowLimit
           };
         }).filter(item => item !== null && item.title);
@@ -287,7 +289,7 @@ export default function Catalogue() {
                 {/* --- SCRARCITY BADGE --- */}
                 {product.isLowStock && product.isAvailable && (
                   <div className="low-stock-warning">
-                    ⚠️ ONLY {product.stockQty} LEFT!
+                    ⚠️ ONLY {product.stockQty} {product.unit} LEFT!
                   </div>
                 )}
 
