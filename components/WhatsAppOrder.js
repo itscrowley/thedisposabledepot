@@ -1,9 +1,12 @@
 'use client'; 
 
-import React, { useState, useEffect } from 'react'; // useEffect wapis le aaye
-import { Send, Phone, MoreVertical, Video } from 'lucide-react'; 
+import React, { useState, useEffect } from 'react';
+import { Send, Phone, MoreVertical, Video, Plus } from 'lucide-react'; 
+import { useCart } from '../context/CartContext'; // Import context hook
 
 export default function WhatsAppOrder() {
+  const { addToCart } = useCart(); // Access addToCart function
+
   // --- 1. STATES ---
   const [category, setCategory] = useState('');
   const [qty, setQty] = useState('');
@@ -12,7 +15,7 @@ export default function WhatsAppOrder() {
   // Naya State: Options store karne ke liye
   const [qtyOptions, setQtyOptions] = useState([]); 
 
-  // --- 2. LOGIC: QUANTITY CALCULATOR (AAPKA PURANA CODE) ---
+  // --- 2. LOGIC: QUANTITY CALCULATOR ---
   useEffect(() => {
     let unit = "Packets/Units";
     const max = 100; // 1 se 100 tak ginti
@@ -36,8 +39,8 @@ export default function WhatsAppOrder() {
   }, [category]);
 
 
-  // --- 3. FUNCTION (Send to WhatsApp) ---
-  const sendOrder = (e) => {
+  // --- 3. FUNCTION (Add to Cart Handler) ---
+  const handleAddToCart = (e) => {
     e.preventDefault();
 
     if (!category || !qty) {
@@ -45,29 +48,25 @@ export default function WhatsAppOrder() {
       return;
     }
 
-    // Aapka Phone Number
-    const phoneNumber = "919814812623"; 
+    // Extract numeric quantity for calculations
+    const numericQty = parseInt(qty.split(' ')[0]);
+    const unitStr = qty.split(' ').slice(1).join(' ');
 
-    // Message Format
-    const message = 
-`🧾 *NEW ORDER REQUEST*
-----------------------------------
-📅 Date: ${new Date().toLocaleDateString()}
-🏭 To: *The Disposable Depot*
+    const newItem = {
+        id: category + '-' + unitStr, // Simple unique ID generation
+        name: category,
+        qty: numericQty,
+        unit: unitStr,
+        notes: notes
+    };
 
-📦 *ITEM DETAILS*
-• Product: *${category}*
-• Quantity: *${qty}*
-
-📝 *CUSTOMER NOTES*
-${notes ? `"${notes}"` : "None"}
-
-----------------------------------
-💡 Please confirm availability & price.`;
-
-    const encodedMsg = encodeURIComponent(message);
-    const url = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
-    window.open(url, '_blank');
+    addToCart(newItem);
+    
+    // Optional: Reset form after adding
+    setCategory('');
+    setQty('');
+    setNotes('');
+    // alert("Item added to cart!"); // Or rely on the cart modal opening
   };
 
   return (
@@ -77,7 +76,6 @@ ${notes ? `"${notes}"` : "None"}
         <div className="wa-card">
           <div className="wa-header">
             <div className="wa-profile-pic">
-              {/* Image path ab seedha '/logo.png' kar diya hai */}
               <img 
                 src="/logo.png" 
                 alt="DP" 
@@ -104,7 +102,7 @@ ${notes ? `"${notes}"` : "None"}
               </div>
             </div>
 
-            <form onSubmit={sendOrder} className="wa-form">
+            <form onSubmit={handleAddToCart} className="wa-form">
               
               {/* Product Select */}
               <div className="msg-row outgoing">
@@ -115,6 +113,7 @@ ${notes ? `"${notes}"` : "None"}
                     required 
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
+                    className="dark:bg-gray-700 dark:text-white" // Theme support
                   >
                     <option value="">👇 Select Item...</option>
                     <option>Packaged Water Cups (Box)</option>
@@ -140,7 +139,7 @@ ${notes ? `"${notes}"` : "None"}
                 </div>
               </div>
 
-              {/* Quantity Select (OLD LOGIC RESTORED) */}
+              {/* Quantity Select */}
               <div className="msg-row outgoing">
                 <div className="msg-bubble green-bubble">
                   <label className="bubble-label">Quantity</label>
@@ -149,9 +148,9 @@ ${notes ? `"${notes}"` : "None"}
                     required 
                     value={qty}
                     onChange={(e) => setQty(e.target.value)}
+                    className="dark:bg-gray-700 dark:text-white"
                   >
                     <option value="">👇 Select Qty...</option>
-                    {/* Yahan ab wahi 1-100 wala loop chalega */}
                     {qtyOptions.map((opt, idx) => (
                       <option key={idx} value={opt}>{opt}</option>
                     ))}
@@ -173,6 +172,7 @@ ${notes ? `"${notes}"` : "None"}
                     placeholder="Type special instructions..."
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
+                    className="dark:bg-gray-700 dark:text-white placeholder-gray-400"
                   ></textarea>
                   <div className="msg-meta">
                     <span className="msg-time">Now</span>
@@ -181,18 +181,16 @@ ${notes ? `"${notes}"` : "None"}
                 </div>
               </div>
 
-              {/* Footer / Send Button */}
+              {/* Footer / Add To Cart Button */}
               <div className="wa-footer-bar">
-                <div className="wa-spoof-input">Send Order on WhatsApp</div>
+                <div className="wa-spoof-input text-gray-500">Add item to cart...</div>
                 
-                <button type="submit" className="btn-whatsapp-send">
-                  <svg viewBox="0 0 24 24" width="26" height="26" fill="#9ca3af" className="wa-icon">
-                    <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/>
-                  </svg>
-                  
-                  <svg viewBox="0 0 24 24" width="26" height="26" fill="#075E54" className="wa-icon">
-                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
-                  </svg>
+                <button 
+                    type="submit" 
+                    className="bg-orange-500 hover:bg-orange-600 text-white rounded-full p-3 shadow-md flex items-center justify-center transition-colors"
+                    title="Add to Cart"
+                >
+                  <Plus size={24} />
                 </button>
               </div>
 

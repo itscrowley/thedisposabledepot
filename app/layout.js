@@ -5,6 +5,8 @@ import Footer from '../components/Footer';
 import BackToTop from '../components/BackToTop';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { CartProvider } from '../context/CartContext';
+import FloatingCart from '../components/FloatingCart';
 const inter = Inter({ 
   subsets: ['latin'],
   display: 'swap',
@@ -119,7 +121,8 @@ export default function RootLayout({ children }) {
         
       </head>
       <body className={inter.className}>
-        {/* Ye script Google Bot ke liye hai (User ko nahi dikhegi) */}
+        <CartProvider>
+        {/* Ye script Google Bot ke liye hai (User ko nahi dikhega) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
@@ -135,6 +138,8 @@ export default function RootLayout({ children }) {
         {/* Footer yahan lagaya */}
         <Footer />
         <BackToTop />
+        <FloatingCart />
+        </CartProvider>
       </body>
     </html>
   );
