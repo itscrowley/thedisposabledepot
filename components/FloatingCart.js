@@ -147,7 +147,7 @@ export default function FloatingCart() {
                     w-[90vw] max-h-[60vh]    /* Width: 90% screen width (Drawer feel) */
 
                     /* === 💻 DESKTOP SETTINGS === */
-                    md:bottom-32 md:right-10 /* Desktop button ke upar */
+                    md:bottom-42 md:right-10 /* Desktop button ke upar */
                     md:w-[380px] md:max-h-[70vh] /* Width: Fixed standard size */
                 `}
                 style={{
